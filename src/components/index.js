@@ -16,7 +16,6 @@ import HeaderFormAbsesni from './HeaderFormAbsesni'
 import InformasiDataDiri from './InformasiDataDiri'
 import ButtonTutupPengumuman from './ButtonTutupPengumuman'
 import ButtonLogin from './ButtonLogin'
-import Notifikasi from './Notifikasi'
 import CellAksiPengumuman from './CellAksiPengumuman'
 import {CellAksiPengumumanKaryawan, CellAksiPengumumanSatgas, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas} from './CellAksiPengumuman'
 
@@ -43,7 +42,7 @@ import {ButtonKembali, Form_1, Form_2, Form_3, Form_4,
     TemplateInfo, CheckboxPenyakit,TableKesehatan, TemplateRow} from './components_abs_detail'
 import {TablePengumumanKry, TablePengumumanMhs, TablePengumumanSatgas} from './TablePengumuman'
 
-export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInformation, HeaderApps, Notifikasi,
+export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInformation, HeaderApps,
     InformasiPengisian, NotifPengisian, ButtonIsiFormulir, CellAksiFormulir, CellAksiFormulirMahasiswa,
     TablePengumuman, TablePengumumanMhs, TablePengumumanKry, TablePengumumanSatgas, CellAksiPengumuman, FormUbahSandi, ButtonSimpanSandi,
     HeaderFormAbsesni, InformasiDataDiri, FormPengisian_1_1, InformasiTinggalBersama,
