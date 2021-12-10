@@ -12,7 +12,7 @@ const ButtonKembali = ({props}) => {
                 onPress={backForm}
                 // onPress={() => Alert.alert("Batal")}
             >
-                <Text style={styles.textButton}>BATAL</Text>
+                <Text style={styles.text}>KEMBALI</Text>
             </TouchableOpacity>           
         </View>
     )

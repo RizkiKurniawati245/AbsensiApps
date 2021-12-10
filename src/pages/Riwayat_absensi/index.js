@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { HeaderApps,HeaderInformation, TablePengisian, TablePengumuman } from '../../components'
 import { WARNA_PUTIH } from '../../utils/constants'
-import {Riwayat_absensi_list, Riwayat_absensi_detail } from './Riwayat_absensi_routing'
+import { Riwayat_absensi_list, Riwayat_absensi_detail } from './Riwayat_absensi_routing'
 
 const Stack = createStackNavigator();
 

@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { TablePengisian } from '../../../components'
 import { WARNA_PUTIH } from '../../../utils/constants'
 
-const Riwayat_absensi_list = ({navigation}) => {
+const Riwayat_absensi_list = ({hasAbsen=false, navigation}) => {
     return (
         <View style={ styles.page }>            
             <ScrollView style={styles.containerScroll}>
