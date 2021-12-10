@@ -3,12 +3,10 @@ import React from 'react'
 import axios, { Axios } from 'axios'
 import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { ButtonKembali, Form_1_Kry } from '../../../components'
+import { ButtonKembali, Form_1_karyawan, Form_2 } from '../../../components'
 import { WARNA_HITAM, LINK_API, WARNA_PUTIH , WARNA_BG_FORM, WARNA_KUNING, WARNA_SEKUNDER} from '../../../utils/constants'
-import RowPertanyaan from '../../../components/components_abs4/RowPertanyaan'
 
-
-export default class Riwayat_absensi_detail extends Component{
+export default class Riwayat_absensi_detail extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -40,9 +38,9 @@ export default class Riwayat_absensi_detail extends Component{
             <View>
                 <ScrollView style={styles.containerScrollView}>
                     <View style={styles.containerForm}>  
-                        <Form_1_Kry/>
-                        {/* <Form_2/>
-                        <Form_3/>
+                        <Form_1_karyawan/>
+                        {/* <Form_2/> */}
+                        {/* <Form_3/>
                         <Form_4/> */}
                         <View style={styles.button}>
                             <ButtonKembali/>

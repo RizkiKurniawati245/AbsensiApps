@@ -7,7 +7,7 @@ import TemplateInfo from './TemplateInfo'
 import CheckboxPenyakit from './CheckboxPenyakit'
 import TableKesehatan from './TableKesehatan'
 import TemplateRow from './TemplateRow'
-import Form_1_Kry from './Form_1_Kry'
+import Form_1_karyawan from './Form_1_karyawan'
 
 export {
     ButtonKembali,
@@ -19,5 +19,5 @@ export {
     CheckboxPenyakit,
     TableKesehatan,
     TemplateRow,
-    Form_1_Kry
+    Form_1_karyawan
 }

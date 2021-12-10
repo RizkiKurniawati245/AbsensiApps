@@ -3,12 +3,12 @@ import axios, { Axios } from 'axios'
 import { AsyncStorage } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { CheckboxPenyakit, InformasiDataDiri } from '../..'
+import { CheckboxPenyakit, InformasiDataDiriKaryawan } from '../..'
 import { WARNA_SEKUNDER, LINK_API } from '../../../utils/constants'
 import HeaderFormAbsesni from '../../HeaderFormAbsesni'
 import TemplateInfo from '../TemplateInfo'
 
-class Form_1_Kry extends Component{
+class Form_1_karyawan extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -44,9 +44,10 @@ class Form_1_Kry extends Component{
             
             return(
                 <View key={index}>
+
                     <View style={styles.info}>
                         <TemplateInfo
-                            question="Tinggal bersama siapa dan dimana Anda saat ini?"
+                            question="Apakah Anda hamil?"
                             //answer="[Keluarga]  RT03/01, Kauman, Comal, Kabupaten Pemalang, Jawa Tengah"
                             // answer={"["+info1[0]+"]  "+info1[1].split("###").join(", ")}
                             answer={myValue.fab_is_hamil}
@@ -60,58 +61,79 @@ class Form_1_Kry extends Component{
                             answer={myValue.fab_alamat.split("###").join(", ")}
                         />
                     </View>
-
-                    {/* <View style={styles.infoDark}>
+                    
+                    <View style={styles.infoDark}>
                         <TemplateInfo
-                            question="Apakah Anda tinggal di kos/kontrakan bersama rekan mahasiswa/karyawan Polman Astra lain?"
+                            question="Bagaimana kondisi kesehatan Anda saat ini?"
                             //answer="Tidak"
-                            answer={myValue.fam_is_astra}
+                            answer={myValue.fab_sehat_self}
                         />
                         <TemplateInfo
-                            question="Informasikan nama dan program studi/departemennya!"
+                            question="Informasikan perihal penyakit atau gejala yang dialami!"
                             //answer="---"
-                            answer={myValue.fam_is_astra_desc}
+                            answer={myValue.fab_sehat_self_desc == "" ? "---" : myValue.fab_sehat_self_desc}
                         />
                     </View>
 
                     <View style={styles.infoDark}>
                         <TemplateInfo
-                            question="Nomor Kontak Lain yang Bisa Dihubungi"
+                            question="Bagaimana kondisi kesehatan keluarga Anda/kerabat Anda saat ini? (Jika berada di rumah orang tua/kerabat)"
                             //answer="Bapak, 087711643355"
-                            answer={myValue.fam_no_hp_lain}
+                            answer={myValue.fab_sehat_family}
                         />
                         <TemplateInfo
-                            question="Apakah keluarga Anda ada yang berprofesi sebagai berikut?"
+                            question="Jelaskan data diri keluarga dan gejala yang dialami dan informasikan sejak kapan menderitanya!"
                             //answer="---"
-                            answer={myValue.fam_profesi_family == "" ? "---" : myValue.fam_profesi_family}
+                            answer={myValue.fab_sehat_family_desc == "" ? "---" : myValue.fab_sehat_family_desc}
                         />
                     </View>
 
                     <View style={styles.infoDark}>
                         <TemplateInfo
-                            question="Apakah Anda menggunakan kendaraan umum saat ke kampus?"
+                            question="Apakah di dalam keluarga Anda (termasuk Anda), ada anggota keluarga yang terpapar virus Corona/COVID-19? (ODP/PDP/Suspect/Positif!"
                             //answer="Tidak"
-                            answer={!myValue.fam_is_kendaraan_umum ? "---" : myValue.fam_is_kendaraan_umum}
+                            answer={myValue.fab_covid_family}
                         />
                         <TemplateInfo
-                            question="Sebutkan jenis kendaraan umum yang Anda gunakan!"
+                            question="Mohon jelaskan jika terdapat ODP/PDP/Suspect/Positif!"
                             //answer="---"
-                            answer={!myValue.fam_is_kendaraan_umum_desc ? "---" : myValue.fam_is_kendaraan_umum_desc}
+                            answer={myValue.fab_covid_family_desc == "" ? "---" : myValue.fab_covid_family_desc}
                         />
                     </View>
 
                     <View style={styles.infoDark}>
                         <TemplateInfo
-                            question="Apakah dalam 7 hari terakhir Anda mengunjugi rumah sakit?"
+                            question="Apakah Anda menggunakan kendaraan umum? (Ojek Online/Angkot/Bus)"
                             //answer="Tidak"
-                            answer={!myValue.fam_rumah_sakit ? "---" : myValue.fam_rumah_sakit}
+                            answer={myValue.fab_kendaraan_umum}
+                        />
+                        
+                    </View>
+
+                    <View style={styles.infoDark}>
+                        <TemplateInfo
+                            question="Apakah dalam 7 hari terakhir Anda mengunjungi rumah sakit?"
+                            //answer="Tidak"
+                            answer={myValue.fab_rumah_sakit}
                         />
                         <TemplateInfo
-                            question="Untuk keperluan apa anda ke rumah sakit/fasilitas kesehatan lainnya?"
+                            question="Untuk keperluan apa Anda ke rumah sakit/fasilitas kesehatan lainnya?"
                             //answer="---"
-                            answer={!myValue.fam_rumah_sakit_desc ? "---" : myValue.fam_rumah_sakit_desc}
+                            answer={myValue.fab_rumah_sakit_desc == "" ? "---" : myValue.fab_rumah_sakit_desc}
                         />
-                    </View>   */}
+                    </View>
+
+                    <View style={styles.infoDark}>
+                            <CheckboxPenyakit
+                                Hipertensi={myValue.fab_riwatat_penyakit.includes("Hipertensi") ? true : false}
+                                Diabetes={myValue.fab_riwatat_penyakit.includes("Diabetes") ? true : false}
+                                Jantung={myValue.fab_riwatat_penyakit.includes("Jantung") ? true : false}
+                                Paru={myValue.fab_riwatat_penyakit.includes("Paru") ? true : false}
+                                Ginjal={myValue.fab_riwatat_penyakit.includes("Ginjal") ? true : false}
+                                Lever={myValue.fab_riwatat_penyakit.includes("Lever") ? true : false}
+                                Nope={myValue.fab_riwatat_penyakit.includes("TidakAda") ? true : false}
+                            />
+                        </View>
                 </View>
             )
         });
@@ -120,7 +142,7 @@ class Form_1_Kry extends Component{
             <View>
                 <HeaderFormAbsesni text={"1. Data Diri dan Keluarga"}/>
                 <View style={styles.container}>
-                    <InformasiDataDiri/>
+                    <InformasiDataDiriKaryawan/>
                     {equalizeData}
                 </View>            
             </View>
@@ -128,8 +150,7 @@ class Form_1_Kry extends Component{
     }
 }
 
-export default Form_1_Kry
-
+export default Form_1_karyawan
 const styles = StyleSheet.create({
     container:{
         marginHorizontal:7,
