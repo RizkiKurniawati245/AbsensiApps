@@ -23,8 +23,8 @@ const FormPengisian_2_1 = () => {
                         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Ya" value="" />
-                        <Picker.Item label="Tidak" value="" />
+                        <Picker.Item label="Ya" value="1" />
+                        <Picker.Item label="Tidak" value="0" />
                     </Picker>
                 </View>
             </View>

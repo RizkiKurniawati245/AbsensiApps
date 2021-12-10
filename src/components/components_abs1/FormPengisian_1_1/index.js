@@ -1,20 +1,12 @@
 import React, { Component, useState } from 'react'
 import {Picker} from '@react-native-picker/picker'
 import { AsyncStorage } from 'react-native'
-import axios, { Axios } from 'axios'
 import {StyleSheet, Text, TextInput, View } from 'react-native'
-import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER, LINK_API } from '../../../utils/constants'
+import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import InformasiTinggalBersama from '../InformasiTinggalBersama'
-//import { createStore } from 'redux'
-//export const Provinsi = id_provinsi;
 
-class FormPengisian_1_1 extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         data: "coba"
-    //     };
-    // }
+
+class FormPengisian_1_1 extends Component {
     state = {
         selectedValue:'',
         provinsi:[],
@@ -24,24 +16,9 @@ class FormPengisian_1_1 extends React.Component {
         kecamatan:[],
         selectedKecamatan:'',
         kelurahan:[],
-        selectedKelurahan:''
+        selectedKelurahan:''        
     }
     GetDataProvinsi = () => {
-        // axios
-        //     .get(`${LINK_API}Lokasi/GetListProvinsi`)
-        //     .then((res) => {
-        //         if(res.data.result === "SUCCESS") {
-        //             // let step = res.data.step;
-        //             // let kpo_provinsi = res.data.kpo_provinsi;
-        //             console.log(res.data.kpo_provinsi)
-        //             this.setState({
-        //                 provinsi:res.data.kpo_provinsi
-        //             })
-        //             return;
-        //         }
-        //     })
-        //     .catch(error => alert(error))
-        // fetch('https://kodepos-2d475.firebaseio.com/list_propinsi.json?print=pretty')
         fetch('https://dev.farizdotid.com/api/daerahindonesia/provinsi')
         .then(response => response.json())
         .then(json => {
@@ -52,155 +29,77 @@ class FormPengisian_1_1 extends React.Component {
         })
     }
     GetDataKotaKabupaten = (id_provinsi) => {
-        axios
-        .get(`${LINK_API}Lokasi/GetListKota?id1=${id_provinsi}`)
-        .then((res) => {
-
-            if(res.data.result === "SUCCESS") {
-                // let step = res.data.step;
-                // let kpo_provinsi = res.data.kpo_provinsi;
-                this.setState({
-                    provinsi:res.data.kpo_provinsi
-                })
-                return;
-            }
+        fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi='+id_provinsi)
+        .then(response => response.json())
+        .then(json => {
+            console.log("Kab"+json.kota_kabupaten)
+            this.setState({
+                kotakabupaten:json.kota_kabupaten
+            })
         })
-        .catch(error => alert(error))
-
-        // fetch('https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi='+id_provinsi)
-        // .then(response => response.json())
-        // .then(json => {
-        //     console.log("Kab"+json.kota_kabupaten)
-        //     this.setState({
-        //         kotakabupaten:json.kota_kabupaten
-        //     })
-        //     // id_provinsi = '0123813334'
-        //     setProvinsi(id_provinsi)
-
-        //     id_provinsi = 'DKI Jakarta'
-        //     let provinsi = {
-        //         myProvinsi: id_provinsi
-        //     }
-        //     AsyncStorage.setItem('provinsi', JSON.stringify(provinsi));
-        // })
     }
-    GetDataKecamatan = (id_provinsi, id_kota) => {
-        axios
-        .get(`${LINK_API}Lokasi/GetListKecamatan?id1=${id_provinsi}&id2=${id_kota}`)
-        .then((res) => {
-
-            if(res.data.result === "SUCCESS") {
-                // let step = res.data.step;
-                // let kpo_provinsi = res.data.kpo_provinsi;
-                this.setState({
-                    provinsi:res.data.kpo_kecamatan
-                })
-                return;
-            }
+    GetDataKecamatan = (id_kota) => {
+        fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota='+id_kota)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json.kecamatan)
+            this.setState({
+                kecamatan:json.kecamatan
+            })
         })
-        .catch(error => alert(error))
-        // fetch('https://dev.farizdotid.com/api/daerahindonesia/kecamatan?id_kota='+id_kota)
-        // .then(response => response.json())
-        // .then(json => {
-        //     console.log(json.kecamatan)
-        //     this.setState({
-        //         kecamatan:json.kecamatan
-        //     })
-        //     // id_kota = '1'
-        //     // setKabupaten(id_kota)
-        // })
     }
-    GetDataKelurahan = (id_provinsi, id_kota, id_kecamatan) => {
-        axios
-        .get(`${LINK_API}Lokasi/GetListKota?id1=${id_provinsi}&id2=${id_kota}&id3=${id_kecamatan}`)
-        .then((res) => {
-
-            if(res.data.result === "SUCCESS") {
-                // let step = res.data.step;
-                // let kpo_provinsi = res.data.kpo_provinsi;
-                this.setState({
-                    provinsi:res.data.kpo_desa_kelurahan
-                })
-                return;
-            }
+    GetDataKelurahan = (id_kecamatan) => {
+        fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan='+id_kecamatan)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json.kelurahan)
+            this.setState({
+                kelurahan:json.kelurahan
+            })
         })
-
-        // fetch('https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan='+id_kecamatan)
-        // .then(response => response.json())
-        // .then(json => {
-        //     console.log(json.kelurahan)
-        //     this.setState({
-        //         kelurahan:json.kelurahan
-        //     })
-        // })
     }
     componentDidMount() {
         this.GetDataProvinsi()        
-    }
+        }
 
     render(){
         let myProvinsi = this.state.provinsi.map((myValue,myIndex)=>{
             return(
-                // <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
-                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKotakabupaten = this.state.kotakabupaten.map((myValue,myIndex)=>{
             return(
-                // <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
-                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKecamatan = this.state.kecamatan.map((myValue,myIndex)=>{
             return(
-                // <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
-                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKelurahan = this.state.kelurahan.map((myValue,myIndex)=>{
             return(
-                // <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
-                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
             )
-        });
-        
-        // let uname = res.data.username;
-        // let pass = res.data.password;
-        // let name = res.data.nama;
-        // let address = res.data.alamat;
-        // let rol_id = res.data.rol_id;
-    
-        // let tinggal = {
-        //     myProvinsi: myProvinsi,
-        //     myKotakabupaten: myKotakabupaten,
-        //     myKecamatan: myKecamatan,
-        //     myKelurahan: myKelurahan
-        // }
-        // AsyncStorage.setItem('tinggal', JSON.stringify(tinggal)); 
-        // console.log(myProvinsi)
-
+        });        
         return (
             <View style={styles.container}>
-    
                 {/* Informasi pengisian */}
                 <View style={styles.containerQuestion}>
-                <InformasiTinggalBersama/>
-                    <Text style={styles.textHeader}>
-                    
-                    </Text>
                     <Text style={styles.textHeader}>
                     Tinggal bersama siapa dan di mana Anda saat ini?
                         <Text style={styles.Mandatory}> *</Text>
                     </Text>
-                    {/* <InformasiTinggalBersama/> */}
+                    <InformasiTinggalBersama/>
                 </View>
     
                 {/* Pilihan Anda */}
                 <View style={styles.containerQuestion}>
-                    {/* <Text style={styles.textHeader}>
+                    <Text style={styles.textHeader}>
                     Pilihan Anda 
                         <Text style={styles.Mandatory}> *</Text>
-                    </Text> */}
+                    </Text>
                     <View style={styles.comboBox}>
                         <Picker
                             selectedValue={this.state.selectedValue}
@@ -209,11 +108,11 @@ class FormPengisian_1_1 extends React.Component {
                             fontSize="13"                            
                         >
                             <Picker.Item label="-- Pilih --" value="" />
-                            <Picker.Item label="Keluarga (Orang Tua/Kakak/Adik)" value="1" />
-                            <Picker.Item label="Kerabat (Bukan Keluarga Inti)" value="2" />
-                            <Picker.Item label="Kos/Kontrakan (Bukan dengan Keluarga/Kerabat)" value="3" />
-                            <Picker.Item label="Mess Perusahaan (Site)" value="4" />
-                            <Picker.Item label="Lainnya" value="5" />
+                            <Picker.Item label="Keluarga (Orang Tua/Kakak/Adik)" value="" />
+                            <Picker.Item label="Kerabat (Bukan Keluarga Inti)" value="" />
+                            <Picker.Item label="Kos/Kontrakan (Bukan dengan Keluarga/Kerabat)" value="" />
+                            <Picker.Item label="Mess Perusahaan (Site)" value="" />
+                            <Picker.Item label="Lainnya" value="" />
                         </Picker>
                     </View>
                 </View>
@@ -225,8 +124,7 @@ class FormPengisian_1_1 extends React.Component {
                         <Text style={styles.Mandatory}> *</Text>
                     </Text>
                     <TextInput 
-                            style={styles.textInput}
-                            // value={data}
+                            style={styles.textInput}                    
                         />
                 </View>
     
@@ -282,7 +180,7 @@ class FormPengisian_1_1 extends React.Component {
                         </Picker>
                     </View>
                 </View>
-
+    
                 {/* Kecamatan */}
                 <View style={styles.containerQuestion}>
                     <Text style={styles.textHeader}>

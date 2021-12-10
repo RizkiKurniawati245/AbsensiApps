@@ -33,11 +33,11 @@ const FormPengisian_1_4 = () => {
                         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Dokter" value="" />
-                        <Picker.Item label="Perawat/Tenaga Medis non Dokter" value="" />
-                        <Picker.Item label="Pilot/Kru Penerbangan" value="" />
-                        <Picker.Item label="TNI/Polri" value="" />
-                        <Picker.Item label="Kru Kapal Laut" value="" />
+                        <Picker.Item label="Dokter" value="1" />
+                        <Picker.Item label="Perawat/Tenaga Medis non Dokter" value="2" />
+                        <Picker.Item label="Pilot/Kru Penerbangan" value="3" />
+                        <Picker.Item label="TNI/Polri" value="4" />
+                        <Picker.Item label="Kru Kapal Laut" value="5" />
                     </Picker>
                 </View>
             </View>

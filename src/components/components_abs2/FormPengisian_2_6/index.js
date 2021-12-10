@@ -48,7 +48,7 @@ const FormPengisian_2_6 = () => {
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Satu Kali" value="1" />
-                        <Picker.Item label="Dua Kali" value="0" />
+                        <Picker.Item label="Dua Kali" value="2" />
                     </Picker>
                 </View>
             </View>
