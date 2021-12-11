@@ -84,7 +84,7 @@ export default class TablePengumumanSatgas extends Component {
                 <DataTable.Cell  style={{flex: 1.5}}>
                   <Text style={styles.textData} numberOfLines={1}>{myValue.pen_subyek}</Text></DataTable.Cell>
                 
-                <DataTable.Cell  style={{flex: 1.5}}>
+                <DataTable.Cell  style={{flex: 1}}>
                   <Text style={styles.textData}>{myValue.pen_created_date}</Text></DataTable.Cell>
                 
                 <DataTable.Cell  style={{flex: 0.2}}>
@@ -93,9 +93,9 @@ export default class TablePengumumanSatgas extends Component {
                 <DataTable.Cell  style={{flex: 0.2}}>
                   <CellAksiUbahPengumumanSatgas navigation={props.navigation} pen_id={myValue.pen_id}/></DataTable.Cell>
 
-                <DataTable.Cell  style={{flex: 0.2}}>
+                {/* <DataTable.Cell  style={{flex: 0.2}}>
                   <CellAksiTampilPengumumanSatgas navigation={props.navigation} pen_id={myValue.pen_id}/></DataTable.Cell>
-                  
+                   */}
             </DataTable.Row>
           )
       });
@@ -112,9 +112,9 @@ export default class TablePengumumanSatgas extends Component {
                 <DataTable.Cell style={{flex: 1.5}}>
                   <Text style={styles.textHead} numberOfLines={1}>{this.state.tableHead[2]}</Text>
                 </DataTable.Cell>
-                <DataTable.Cell style={{flex: 0.5}}>
+                {/* <DataTable.Cell style={{flex: 0.5}}>
                   <Text style={styles.textHead}>{this.state.tableHead[3]}</Text>
-                </DataTable.Cell>
+                </DataTable.Cell> */}
             </DataTable.Row>
             {myRow}
           </Table>

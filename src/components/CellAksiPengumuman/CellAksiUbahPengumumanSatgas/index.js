@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
-import { IconDetail,  IconUbah} from '../../../assets/icons'
+import { IconDetail,  IconPrinter,  IconUbah} from '../../../assets/icons'
 
 const CellAksiUbahPengumumanSatgas = (props) => {
     const detailHandle = () => {
@@ -14,7 +14,7 @@ const CellAksiUbahPengumumanSatgas = (props) => {
                 onPress={detailHandle}
             >
                 <View style={styles.detail}>
-                    <IconDetail/>                    
+                    <IconPrinter/>                    
                 </View>
             </TouchableOpacity>   
         </View>

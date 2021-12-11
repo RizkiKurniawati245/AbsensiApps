@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { AsyncStorage } from 'react-native'
+import axios, { Axios } from 'axios'
 import {Picker} from '@react-native-picker/picker'
 // import ImagePicker from 'react-native-image-picker'
 import * as ImagePicker from "react-native-image-picker"
 import {StyleSheet, Text, TextInput, View, TouchableOpacity, Button, Image, ScrollView } from 'react-native'
-import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_UNGU_MUDA } from '../../../utils/constants';
+import { WARNA_BG_FORM, WARNA_HIJAU_MUDA, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_UNGU_MUDA, LINK_API } from '../../../utils/constants';
 import react from 'react';
 // import { Button } from 'react-native-paper';
 
@@ -21,24 +23,98 @@ const Form_create_pengumuman = (props) => {
     // const state = {
     //     photo: null,
     // };
-    handleChoosePhoto = () => {
-        const options = {
-            noData: true, 
-        };
-        ImagePicker.launchImageLibrary(options, response => {
-            console.log("response", response);
-            if(response.uri){
-                this.setState({ photo: response });
-            }
-        });
-    };
+    // handleChoosePhoto = () => {
+    //     const options = {
+    //         noData: true, 
+    //     };
+    //     ImagePicker.launchImageLibrary(options, response => {
+    //         console.log("response", response);
+    //         if(response.uri){
+    //             this.setState({ photo: response });
+    //         }
+    //     });
+    // };
 
      
     // render() {
-        const [selectedValue, setSelectedValue] = useState("");
+    const [selectedValue, setSelectedValue] = useState("");
+    const [subyek, setSubyek] = React.useState('');
+    let usern = '';
+    const [untuk, setUntuk] = useState('');
+    const [isi, setIsi] = React.useState("");
+    const [username, setUsername] = React.useState("");
+    const [errortext, setErrortext] = React.useState('');
+    const [loading, setLoading] = useState(false);
+
+    AsyncStorage.getItem('user', (error, result) => {
+        if(result){
+            //Parse result ke JSON
+            let resultParsed = JSON.parse(result)
+            usern = resultParsed.uname;
+        }
+    });
+
         // const [state, setState] = useState("");
         // const { photo } = this.state;
         // const props = this.props;
+
+
+    const handleSubmitPress = () => {
+        setErrortext('');
+        // if (!oldpassword) {
+        //     alert('Kata sandi lama harus diisi!');
+        // return;
+        //}
+        if (!subyek) {
+            alert('Subyek Pengumuman harus diisi!');
+            return;
+        }
+        // if (!itemValue) {
+        //     alert('Pengumuman untuk harus diisi!');
+        //     return;
+        // }
+        
+        if (!isi) {
+            alert('Isi pengumuman harus diisi!');
+            return;
+        }
+        //setLoading(true);
+    
+        axios
+            .post(`${LINK_API}Pengumuman/createPengumuman?subyek=${subyek}&&untuk=${untuk}&&isi=${isi}&&username=${usern}`)
+            .then((res) => {
+            
+                if(res.data.result === "True") {
+                    let resubyek = res.data.pen_subyek;
+                    let reuntuk = res.data.pen_untuk;
+                    let reisi = res.data.pen_isi;
+                    let reusername = res.data.pen_username;
+                
+                    let data = {
+                        resubyek: resubyek,
+                        reuntuk: reuntuk,
+                        reisi: reisi,
+                        reusername: reusername
+                    }
+                    console.log(data);
+                    //navigation.replace('MainApp');
+
+                    //notif kalo berhasil diubah
+                    alert('Berhasil Menambah data pengumuman!');
+                    return;
+                }
+                else
+                {
+                    //notif gagal diubah
+                    console.log(error);
+                    alert('Gagal Menambah data pengumuman!');
+                    return;
+                }    
+            })
+            .catch(error => alert('error 404 found!', error))
+            .finally(() => setLoading(false));
+            };
+
     return (
         <ScrollView style={styles.containerScroll}>
         <View style={styles.container}>            
@@ -49,7 +125,8 @@ const Form_create_pengumuman = (props) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    style={styles.textInput}                    
+                    style={styles.textInput}    
+                    onChangeText={subyek => setSubyek(subyek)}                
                     />
             </View>
 
@@ -61,16 +138,17 @@ const Form_create_pengumuman = (props) => {
                 </Text>
                 <View style={styles.comboBox}>
                     <Picker
-                        selectedValue={selectedValue}                                                
+                        selectedValue={untuk}                                                
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        // onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(untuk) => setUntuk(untuk)}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Mahasiswa" value="" />
-                        <Picker.Item label="Karyawan" value="" />
-                        <Picker.Item label="Semua" value="" />
+                        <Picker.Item label="Mahasiswa" value="Mahasiswa" />
+                        <Picker.Item label="Karyawan" value="Karyawan" />
+                        <Picker.Item label="Semua" value="Semua" />
                     </Picker>
                 </View>
             </View>
@@ -80,20 +158,25 @@ const Form_create_pengumuman = (props) => {
                 Isi Pengumuman
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
-                {/* {photo && ( */}
+                {/* {photo && (
                     <Image
-                    // source={{uri: photo.uri}}
+                    source={{uri: photo.uri}}
                     style={{width: 300, height: 300}}
                     />
-                {/* )} */}
+                )}
                 <Button title="Choose Photo" 
                     onPress={handleChoosePhoto}
-                />
+                /> */}
+                 <TextInput
+                    style={styles.textInput}   
+                    onChangeText={isi => setIsi(isi)}                   
+                    />
+                
             </View>
 
-            <View style={styles.button}>
-                <TouchableOpacity
-                    // onPress={()}
+            <View style={styles.buttonOut}>
+                <TouchableOpacity style={styles.button}
+                    onPress={handleSubmitPress}
                 >
                     <Text style={styles.text}>Simpan</Text>
                 </TouchableOpacity>            
@@ -148,11 +231,16 @@ const styles = StyleSheet.create({
         textAlignVertical:'center'
     },
     button:{
-        backgroundColor:WARNA_UNGU_MUDA,
+        backgroundColor:WARNA_HIJAU_MUDA,
         justifyContent: 'center', 
         alignItems: 'center',
         width:75,
         height:25
+    },
+    buttonOut:{
+        marginTop:10,
+        marginBottom:10,
+        alignItems:'flex-end'
     },
     text:{
         fontFamily:"Poppins-Light",
