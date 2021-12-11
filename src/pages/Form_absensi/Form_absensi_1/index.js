@@ -27,7 +27,7 @@ class Form_absensi_1 extends Component {
             kelamin:''
         } 
     }
-    
+
     componentDidMount() {
         axios
         .get(`${LINK_API}Absensi/GetDataInformasiMahasiswa?username=0320190027`)
@@ -63,7 +63,7 @@ class Form_absensi_1 extends Component {
                     <InformasiDataDiri callBack={handleAdd} nim={this.state.nim} 
                     nama={this.state.nama} nomor={this.state.hp} status={this.state.status}
                     prodi={this.state.prodi} tingkat={this.state.tingkat} />
-                    <FormPengisian_1_1 alamatTinggal={alamatTinggal}/>
+                    <FormPengisian_1_1/>
                     <FormPengisian_1_2/>
                     <FormPengisian_1_3/>
                     <FormPengisian_1_4/>
