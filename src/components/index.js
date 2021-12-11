@@ -60,15 +60,16 @@ import {FormPengisian_4_1Kry, ButtonBatal4Kry, ButtonSelanjutnya4Kry,
     RowPertanyaanKry, InformationPentingKry} from './components_abs4Kry'
 import {FormPengisian_5_1Kry, ButtonSelesaiKry, ButtonUnduhFormulirKry} from './components_abs5Kry'
 
-import {ButtonKembali, Form_1, Form_2, Form_3, Form_4,
+import {ButtonKembali, Form_1, Form_2, Form_3, Form_4, Form_1_karyawan,
     TemplateInfo, CheckboxPenyakit,TableKesehatan, TemplateRow} from './components_abs_detail'
 import {TablePengumumanKry, TablePengumumanMhs, TablePengumumanSatgas} from './TablePengumuman'
 
 export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInformation, HeaderApps,
     InformasiPengisian, NotifPengisian, ButtonIsiFormulir, CellAksiFormulir, CellAksiFormulirMahasiswa,
     TablePengumuman, TablePengumumanMhs, TablePengumumanKry, TablePengumumanSatgas, CellAksiPengumuman, FormUbahSandi, ButtonSimpanSandi,
-    HeaderFormAbsesni, InformasiDataDiri, InformasiTinggalBersama, 
-    FormPengisian_1_1, FormPengisian_1_2, ButtonSalin, FormPengisian_1_3, FormPengisian_1_4, FormPengisian_1_5,
+
+    HeaderFormAbsesni, InformasiDataDiri, InformasiDataDiriKaryawan, FormPengisian_1_1, InformasiTinggalBersama,
+    FormPengisian_1_2, ButtonSalin, FormPengisian_1_3, FormPengisian_1_4, FormPengisian_1_5,
     FormPengisian_1_6, ButtonBatal1, ButtonSelanjutnya1, FormPengisian_2_1, FormPengisian_2_2,
     
     InformasiDataDiriKry, InformasiTinggalBersamaKry,
@@ -77,7 +78,7 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
 
     FormPengisian_2_3, FormPengisian_2_4, FormPengisian_2_5, FormPengisian_2_6,
     FormPengisian_2_7,ButtonBatal2, ButtonSelanjutnya2,
-    
+
     FormPengisian_2_1Kry, FormPengisian_2_2Kry, FormPengisian_2_3Kry, FormPengisian_2_4Kry, FormPengisian_2_5Kry, FormPengisian_2_6Kry,
     FormPengisian_2_7Kry,ButtonBatal2Kry, ButtonSelanjutnya2Kry,
     
@@ -87,9 +88,10 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
     FormPengisian_4_1, ButtonBatal4, ButtonSelanjutnya4, RowPertanyaan, InformationPenting,
     FormPengisian_4_1Kry, ButtonBatal4Kry, ButtonSelanjutnya4Kry, RowPertanyaanKry, InformationPentingKry,
     
-    FormPengisian_5_1, ButtonSelesai, ButtonUnduhFormulir,
     FormPengisian_5_1Kry, ButtonSelesaiKry, ButtonUnduhFormulirKry,
     
     ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit,
+    FormPengisian_5_1, ButtonSelesai, ButtonUnduhFormulir,
+    InformationPenting, ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit, Form_1_karyawan,
     TableKesehatan, TemplateRow, ButtonTutupPengumuman, ButtonLogin, CellAksiPengumumanSatgas, CellAksiPengumumanKaryawan, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas
     ,ButtonTambahPengumuman};

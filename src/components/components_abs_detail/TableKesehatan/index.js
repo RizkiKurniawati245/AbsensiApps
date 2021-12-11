@@ -61,13 +61,12 @@ class TableKesehatan extends Component {
         let equalizeData = this.state.answer.map((myValue, index) => {
             return(
                 <View key={index}>
-                    
                     <TemplateRow
                         no={myValue.per_id}
-                        question={this.state.pertanyaan[index].per_deskripsi}
-                        //question="Apakah pernah keluar rumah/tempat umum (pasar, fasyankes, kerumunan orang, dan lain-lain)?"
-                        //answer="Tidak"
-                        answer={myValue.fdm_jawaban}
+                        // question={this.state.pertanyaan[index].per_deskripsi}
+                        question="Apakah pernah keluar rumah/tempat umum (pasar, fasyankes, kerumunan orang, dan lain-lain)?"
+                        answer="Tidak"
+                        // answer={myValue.fdm_jawaban}
                     />
                     <TemplateRow
                         no={myValue.per_id}
