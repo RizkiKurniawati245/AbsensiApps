@@ -4,8 +4,9 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_3 = () => {
+const FormPengisian_1_3 = (callBack) => {
     const [selectedValue, setSelectedValue] = useState("");
+    console.log(selectedValue)
     return (
         <View style={styles.container}>            
             {/* Apakah Anda tinggal di kos/kontrakan bersama rekan mahasiswa/karyawan Polman Astra lain? */}
@@ -20,7 +21,7 @@ const FormPengisian_1_3 = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue, itemIndex) => setSelectedValue(callBack={itemValue})}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />

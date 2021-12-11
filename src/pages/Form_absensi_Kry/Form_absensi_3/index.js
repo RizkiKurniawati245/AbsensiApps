@@ -11,8 +11,8 @@ const Form_absensi_3 = () => {
                 <FormPengisian_3_1/>                
             </View>
             <View style={styles.button}>
-                <ButtonBatal3/>
-                <ButtonSelanjutnya3/>
+                {/* <ButtonBatal3/>
+                <ButtonSelanjutnya3/> */}
             </View>
         </View>
     )

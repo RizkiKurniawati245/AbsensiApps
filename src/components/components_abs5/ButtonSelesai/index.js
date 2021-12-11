@@ -29,7 +29,7 @@ const ButtonSelesai = (props) => {
                 // notifikasi.buatChannel("3");
                 notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
                 // notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
-                props.navigation.navigate('Form_absensi_sudah')
+                // props.navigation.navigate('Form_absensi_sudah')
 
                 // alert('Berhasil tambah data ' + bom_resiko);
                 return;

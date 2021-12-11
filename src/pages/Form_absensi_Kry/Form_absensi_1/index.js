@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { FormPengisian_1_2, FormPengisian_1_3,FormPengisian_1_4,
     FormPengisian_1_5, FormPengisian_1_6, FormPengisian_2_1, FormPengisian_2_2, FormPengisian_2_3,
-    FormPengisian_2_4, FormPengisian_2_5, FormPengisian_2_6, HeaderFormAbsesni, InformasiDataDiri, ButtonSelanjutnya1 }
+    FormPengisian_2_4, FormPengisian_2_5, FormPengisian_2_6, HeaderFormAbsesni, InformasiDataDiri, ButtonSelanjutnya1Kry }
     from '../../../components'
 
 
@@ -29,7 +29,7 @@ const Form_absensi_1 = () => {
                 </View>
                 <View style={styles.button}>
                     {/* <ButtonBatal1/> */}
-                    <ButtonSelanjutnya1/>
+                    <ButtonSelanjutnya1Kry navigation={navigation}/>
                 </View>
             </ScrollView>
         </View>
