@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { FormPengisian_4_1, HeaderFormAbsesni, ButtonBatal4, ButtonSelanjutnya4 } from '../../../components'
+import { FormPengisian_4_1, HeaderFormAbsesni, ButtonBatal4, ButtonSelanjutnya4Kry } from '../../../components'
 import { WARNA_SEKUNDER } from '../../../utils/constants'
 
 const Form_absensi_4 = () => {
@@ -12,7 +12,7 @@ const Form_absensi_4 = () => {
             </View>
             <View style={styles.button}>
                 {/* <ButtonBatal4/> */}
-                <ButtonSelanjutnya4/>
+                <ButtonSelanjutnya4Kry navigation={navigation}/>
             </View>
         </View>
     )

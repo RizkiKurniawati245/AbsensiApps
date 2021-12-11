@@ -7,6 +7,19 @@ import InformasiTinggalBersama from '../InformasiTinggalBersama'
 
 
 class FormPengisian_1_1 extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            nim:'',
+            nama:'',
+            prodi:'',
+            tingkat:'',
+            status:'',
+            hp:'',
+            kelamin:''
+        } 
+    }
+    
     state = {
         selectedValue:'',
         provinsi:[],
@@ -108,11 +121,11 @@ class FormPengisian_1_1 extends Component {
                             fontSize="13"                            
                         >
                             <Picker.Item label="-- Pilih --" value="" />
-                            <Picker.Item label="Keluarga (Orang Tua/Kakak/Adik)" value="" />
-                            <Picker.Item label="Kerabat (Bukan Keluarga Inti)" value="" />
-                            <Picker.Item label="Kos/Kontrakan (Bukan dengan Keluarga/Kerabat)" value="" />
-                            <Picker.Item label="Mess Perusahaan (Site)" value="" />
-                            <Picker.Item label="Lainnya" value="" />
+                            <Picker.Item label="Keluarga (Orang Tua/Kakak/Adik)" value="1" />
+                            <Picker.Item label="Kerabat (Bukan Keluarga Inti)" value="2" />
+                            <Picker.Item label="Kos/Kontrakan (Bukan dengan Keluarga/Kerabat)" value="3" />
+                            <Picker.Item label="Mess Perusahaan (Site)" value="4" />
+                            <Picker.Item label="Lainnya" value="5" />
                         </Picker>
                     </View>
                 </View>

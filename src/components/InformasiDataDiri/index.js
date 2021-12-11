@@ -1,16 +1,27 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { WARNA_HITAM } from '../../utils/constants'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Button } from 'react-native-paper'
+// import { LINK_API, WARNA_HITAM } from '../../../utils/constants'
+import { LINK_API, WARNA_HITAM } from '../../utils/constants'
+import axios, { Axios } from 'axios'
 
-const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor}) => {
+const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, nomor, callBack}) => {
+    
+    
     return (
         <View style={styles.container}>
+        {/* <TouchableOpacity onPress={() => {callBack(' jyjg')}}>
+            <Text>Abc</Text>
+        </TouchableOpacity> */}
+        
             <View style={styles.textContainer}>
                 <Text style={styles.textHeader}>
                     NIM - Nama
                 </Text>
                 <Text style={styles.textBody}>
-                    0320190027 - Satria Adjie Prayoga
+                    {nim} - {nama}
+                    {/* 0320190027 - Satria Adjie Prayoga */}
                 </Text>
             </View>
             <View style={styles.textContainer}>
@@ -18,7 +29,7 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     Program Studi - Tingkat
                 </Text>
                 <Text style={styles.textBody}>
-                   Manajemen Informatika (MI) - Tingkat 2
+                   {prodi} - {tingkat}
                 </Text>
             </View>
             <View style={styles.textContainer}>
@@ -26,7 +37,7 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     Status Mahasiswa 
                 </Text>
                 <Text style={styles.textBody}>
-                    Aktif - Reguler
+                    {status}
                 </Text>
             </View>
             <View style={styles.textContainer}>
@@ -34,10 +45,11 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     Nomor Handphone
                 </Text>
                 <Text style={styles.textBody}>
-                    0896 3768 8078
+                    {nomor}
                 </Text>
             </View>
         </View>
+        
     )
 }
 
