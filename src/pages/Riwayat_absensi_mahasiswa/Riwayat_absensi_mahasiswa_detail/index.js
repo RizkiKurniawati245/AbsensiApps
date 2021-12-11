@@ -34,7 +34,8 @@ export default class Riwayat_absensi_mahasiswa_detail extends Component{
     }
 
     render(){
-        // const state = this.state;
+        const props = this.props;
+
         return (
             <View>
                 <ScrollView style={styles.containerScrollView}>
@@ -44,7 +45,7 @@ export default class Riwayat_absensi_mahasiswa_detail extends Component{
                         <Form_3/>
                         <Form_4/>
                         <View style={styles.button}>
-                            <ButtonKembali/>
+                            <ButtonKembali navigation={props.navigation}/>
                         </View>
                     </View>
                 </ScrollView>

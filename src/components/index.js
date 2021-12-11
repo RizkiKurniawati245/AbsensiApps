@@ -16,6 +16,7 @@ import HeaderFormAbsesni from './HeaderFormAbsesni'
 import InformasiDataDiri from './InformasiDataDiri'
 import InformasiDataDiriKry from './InformasiDataDiriKry'
 import ButtonTutupPengumuman from './ButtonTutupPengumuman'
+import { ButtonTutupPengKry, ButtonTutupPengMhs, ButtonTutupPengSat } from './ButtonTutupPengumuman'
 import ButtonLogin from './ButtonLogin'
 import CellAksiPengumuman from './CellAksiPengumuman'
 import {CellAksiPengumumanKaryawan, CellAksiPengumumanSatgas, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas} from './CellAksiPengumuman'
@@ -94,4 +95,4 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
     FormPengisian_5_1, ButtonSelesai, ButtonUnduhFormulir,
     InformationPenting, ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit, Form_1_karyawan,
     TableKesehatan, TemplateRow, ButtonTutupPengumuman, ButtonLogin, CellAksiPengumumanSatgas, CellAksiPengumumanKaryawan, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas
-    ,ButtonTambahPengumuman};
+    ,ButtonTambahPengumuman, ButtonTutupPengKry, ButtonTutupPengMhs, ButtonTutupPengSat};
