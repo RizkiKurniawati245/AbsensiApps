@@ -69,7 +69,7 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
     InformasiPengisian, NotifPengisian, ButtonIsiFormulir, CellAksiFormulir, CellAksiFormulirMahasiswa,
     TablePengumuman, TablePengumumanMhs, TablePengumumanKry, TablePengumumanSatgas, CellAksiPengumuman, FormUbahSandi, ButtonSimpanSandi,
 
-    HeaderFormAbsesni, InformasiDataDiri, InformasiDataDiriKaryawan, FormPengisian_1_1, InformasiTinggalBersama,
+    HeaderFormAbsesni, InformasiDataDiri,  FormPengisian_1_1, InformasiTinggalBersama,
     FormPengisian_1_2, ButtonSalin, FormPengisian_1_3, FormPengisian_1_4, FormPengisian_1_5,
     FormPengisian_1_6, ButtonBatal1, ButtonSelanjutnya1, FormPengisian_2_1, FormPengisian_2_2,
     
@@ -91,8 +91,7 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
     
     FormPengisian_5_1Kry, ButtonSelesaiKry, ButtonUnduhFormulirKry,
     
-    ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit,
     FormPengisian_5_1, ButtonSelesai, ButtonUnduhFormulir,
-    InformationPenting, ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit, Form_1_karyawan,
+    Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit, Form_1_karyawan,
     TableKesehatan, TemplateRow, ButtonTutupPengumuman, ButtonLogin, CellAksiPengumumanSatgas, CellAksiPengumumanKaryawan, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas
     ,ButtonTambahPengumuman, ButtonTutupPengKry, ButtonTutupPengMhs, ButtonTutupPengSat};
