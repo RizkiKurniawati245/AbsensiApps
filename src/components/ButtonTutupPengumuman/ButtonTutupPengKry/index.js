@@ -2,38 +2,35 @@ import React from 'react'
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { WARNA_PUTIH, WARNA_UNGU_MUDA } from '../../../utils/constants'
 
-const ButtonKembali = (props) => {
+const ButtonTutupPengKry = (props) => {
     const backForm = () => {
-        props.navigation.navigate('Riwayat_absensi_mahasiswa_list')
+        props.navigation.navigate('Riwayat_pengumuman_list_kry')
     }
     return (
-        <View style={styles.container}>
+        <View style={styles.button}>
             <TouchableOpacity
                 onPress={backForm}
             >
-                <Text style={styles.text}>KEMBALI</Text>
-            </TouchableOpacity>           
+                <Text style={styles.text}>TUTUP</Text>
+            </TouchableOpacity>            
         </View>
     )
 }
 
-export default ButtonKembali
+export default ButtonTutupPengKry
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor:WARNA_UNGU_MUDA,
-        justifyContent:'center',
-        width:70,
-        height:25,
-    },
     button:{
-        justifyContent:'center',
-        alignContent:'center'
+        backgroundColor:WARNA_UNGU_MUDA,
+        justifyContent: 'center', 
+        alignItems: 'center',
+        width:75,
+        height:25
     },
     text:{
         fontFamily:"Poppins-Light",
-        fontSize:13,
         textAlign:'center',
+        alignSelf:'center',
         color:WARNA_PUTIH
     }
 })

@@ -81,7 +81,7 @@ export default class TablePengumumanKry extends Component {
                 <DataTable.Cell  style={{flex: 1.5}}>
                   <Text style={styles.textData} numberOfLines={1}>{myValue.pen_subyek}</Text></DataTable.Cell>
                 
-                <DataTable.Cell  style={{flex: 1.5}}>
+                <DataTable.Cell  style={{flex: 1}}>
                   <Text style={styles.textData}>{myValue.pen_created_date}</Text></DataTable.Cell>
                 
                 <DataTable.Cell  style={{flex: 0.5}}>

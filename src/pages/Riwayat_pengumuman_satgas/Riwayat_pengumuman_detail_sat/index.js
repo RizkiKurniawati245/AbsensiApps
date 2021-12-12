@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
 import { StyleSheet, Text, View, Image, Dimensions, ScrollView } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { ButtonTutupPengumuman } from '../../../components'
+import { ButtonTutupPengMhs, ButtonTutupPengSat, ButtonTutupPengumuman } from '../../../components'
 import { WARNA_HITAM, LINK_API } from '../../../utils/constants'
 import axios, { Axios } from 'axios'
 
@@ -34,6 +34,7 @@ export default class Riwayat_pengumuman_detail_sat extends Component{
     }
     render(){
         const state = this.state;
+        const props = this.props;
         return (
             <View style={ styles.page }>            
                 <ScrollView style={styles.containerScroll}>
@@ -51,7 +52,10 @@ export default class Riwayat_pengumuman_detail_sat extends Component{
                             <Text style={styles.textHeader}>
                             Isi Pengumuman
                             </Text>
-                            <View style={styles.containerImage}>
+                            <Text style={styles.textBody}>
+                                {state.data.pen_isi}
+                            </Text>
+                            {/* <View style={styles.containerImage}>
                                 <Image
                                     source={{
                                         uri : state.data.pen_isi,
@@ -61,11 +65,11 @@ export default class Riwayat_pengumuman_detail_sat extends Component{
                                     style={styles.image}
                                     resizeMode="contain"
                                     />
-                            </View>                
+                            </View>                 */}
                         </View>
             
                         <View style={styles.button}>
-                            <ButtonTutupPengumuman/>
+                            <ButtonTutupPengSat navigation={props.navigation}/>
                         </View>
                     </View>
                 </ScrollView>
