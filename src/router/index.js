@@ -32,8 +32,8 @@ const MainAppKry = () => {
     return (
         <Tab.Navigator tabBar={props => <BottomTabNavigator {...props} />}>
             <Tab.Screen name="Beranda" component={Beranda_karyawan} />
-            <Tab.Screen name="Form Absensi" component={Riwayat_absensi} />
-            {/* <Tab.Screen name="Form Absensi" component={Form_absensi_Kry} /> */}
+            {/* <Tab.Screen name="Form Absensi" component={Riwayat_absensi} /> */}
+            <Tab.Screen name="Form Absensi" component={Form_absensi_Kry} />
             <Tab.Screen name="Pengumuman" component={Riwayat_pengumuman_karyawan} />
             <Tab.Screen name="Ubah Sandi" component={Ubah_sandi} />
             {/* <Tab.Screen name="LogOut" component={Logout} /> */}

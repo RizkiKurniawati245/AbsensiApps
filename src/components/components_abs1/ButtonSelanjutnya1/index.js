@@ -6,9 +6,10 @@ import axios, { Axios } from 'axios'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 
-const ButtonSelanjutnya1 = (props) => {
+const ButtonSelanjutnya1 = ({navigation, kos}) => {
     // let tinggal = ''
 
+    // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
     const [nim, setNim] = useState('0320190003')
@@ -42,41 +43,41 @@ const ButtonSelanjutnya1 = (props) => {
     }
 
     const handleSubmitPress = () => {
-        axios
-            .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
-            &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
-            &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
-            .then((res) => {
+        let astra = kos
+        console.log("BtnSelanjutnya " + {kos})
+
+        // axios
+        //     .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
+        //     &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
+        //     &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
+        //     .then((res) => {
                 
-                if(res.data.result === "SUCCESS") {
-                    // let step = res.data.step;
-                    let fma_id = res.data.fma_id;
+        //         if(res.data.result === "SUCCESS") {
+        //             // let step = res.data.step;
+        //             let fma_id = res.data.fma_id;
                 
-                    // let data = {
-                    //     step: step,
-                    //     nim: nim
-                    // }
+        //             // let data = {
+        //             //     step: step,
+        //             //     nim: nim
+        //             // }
 
-                    //notif kalo berhasil diubah
-                    // alert('Berhasil tambah data ' + tinggal);
+        //             //notif kalo berhasil diubah
+        //             // alert('Berhasil tambah data ' + tinggal);
+                    
+                    navigation.navigate('Form_absensi_2')
 
-                    // console.log(data);
-                    // navigation.replace('Absensi4');
-                    // navigation.navigate('Absensi4');
-                    props.navigation.navigate('Form_absensi_2')
-
-                    return;
-                }
-                else
-                {
-                    //notif gagal diubah
-                    console.log(error);
-                    alert('Gagal menambah data!');
-                    return;
-                }    
-            })
-            .catch(error => alert(error))
-            .finally(() => setLoading(false));
+        //             return;
+        //         }
+        //         else
+        //         {
+        //             //notif gagal diubah
+        //             console.log(error);
+        //             alert('Gagal menambah data!');
+        //             return;
+        //         }    
+        //     })
+        //     .catch(error => alert(error))
+        //     // .finally(() => setLoading(false));
             };
             
     return (

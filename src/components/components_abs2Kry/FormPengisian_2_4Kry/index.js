@@ -4,8 +4,10 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_4Kry = () => {
+const FormPengisian_2_4Kry = ({callBack, callBack2}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [odp, setOdp] = useState("");
+
     return (
         <View style={styles.container}>            
             {/* Apakah di lingkungan Anda (termasuk Anda), ada warga yang terpapar virus Corona/COVID-19? (ODP/PDP/Suspect/Positif, terbatas dalam RT/Blok dan ada data resmi dari pengurus RT/penanggung jawab setempat) */}
@@ -20,7 +22,7 @@ const FormPengisian_2_4Kry = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />
@@ -36,6 +38,7 @@ const FormPengisian_2_4Kry = () => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
+                    onChangeText={odp => setOdp(callBack2(odp))}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

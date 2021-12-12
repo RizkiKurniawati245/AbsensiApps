@@ -105,7 +105,7 @@ const Form_absensi_Loc = ({navigation}) => {
         setLocationStatus(error.message);
       },
       {
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
         timeout: 30000,
         maximumAge: 1000
       },
