@@ -7,18 +7,18 @@ import InformasiTinggalBersama from '../InformasiTinggalBersama'
 
 
 class FormPengisian_1_1 extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            nim:'',
-            nama:'',
-            prodi:'',
-            tingkat:'',
-            status:'',
-            hp:'',
-            kelamin:''
-        } 
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         nim:'',
+    //         nama:'',
+    //         prodi:'',
+    //         tingkat:'',
+    //         status:'',
+    //         hp:'',
+    //         kelamin:''
+    //     } 
+    // }
     
     state = {
         selectedValue:'',

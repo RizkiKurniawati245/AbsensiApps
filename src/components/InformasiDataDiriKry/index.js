@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { WARNA_HITAM } from '../../utils/constants'
 
-const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor}) => {
+const InformasiDataDiri = ({id, namaDpn, namaBlkg, status}) => {
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
@@ -10,7 +10,7 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     NPK/Nama Akun
                 </Text>
                 <Text style={styles.textBody}>
-                    234235234
+                    {id}
                 </Text>
             </View>
             <View style={styles.textContainer}>
@@ -18,7 +18,7 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     Nama
                 </Text>
                 <Text style={styles.textBody}>
-                   Yosep Setiawan
+                    {namaDpn} {namaBlkg}
                 </Text>
             </View>
             <View style={styles.textContainer}>
@@ -26,7 +26,7 @@ const InformasiDataDiri = ({nim, nama, prodi, tingkat, status, beasiswa, nomor})
                     Seksi/Departemen
                 </Text>
                 <Text style={styles.textBody}>
-                    LPPM
+                    {status}
                 </Text>
             </View>
         </View>

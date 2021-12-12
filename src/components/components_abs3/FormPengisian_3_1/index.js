@@ -4,8 +4,12 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_3_1 = () => {
+const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [ojt, setOjt] = useState("");
+    const [namaPer, setNamaPer] = useState("");
+    const [ta, setTa] = useState("");
+
     return (
         <View style={styles.container}>            
             {/* Apakah saat ini Anda sedang OJT/Magang/Bekerja? */}
@@ -20,7 +24,7 @@ const FormPengisian_3_1 = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />
@@ -36,6 +40,7 @@ const FormPengisian_3_1 = () => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
+                    onChangeText={ojt => setOjt(callBack2(ojt))}
                     style={styles.textInput}                    
                     />
             </View>
@@ -47,6 +52,7 @@ const FormPengisian_3_1 = () => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
+                    onChangeText={namaPer => setNamaPer(callBack3(namaPer))}
                     style={styles.textInput}                    
                     />
             </View>
@@ -58,6 +64,7 @@ const FormPengisian_3_1 = () => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
+                    onChangeText={ta => setTa(callBack4(ta))}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

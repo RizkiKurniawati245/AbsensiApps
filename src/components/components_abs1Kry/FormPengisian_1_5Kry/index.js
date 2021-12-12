@@ -4,8 +4,10 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalinKry'
 
-const FormPengisian_1_5Kry = () => {
+const FormPengisian_1_5Kry = ({callBack, callBack2}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [kendaraan, setKendaraan] = useState("");
+
     return (
         <View style={styles.container}>
             {/* Apakah Anda menggunakan kendaraan umum saat ke kampus? */}
@@ -19,7 +21,7 @@ const FormPengisian_1_5Kry = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />
@@ -35,8 +37,9 @@ const FormPengisian_1_5Kry = () => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
-                        style={styles.textInput}                    
-                    />
+                    onChangeText={kendaraan => setKendaraan(callBack2(kendaraan))}
+                    style={styles.textInput}                    
+                />
             </View>
         </View>
     )

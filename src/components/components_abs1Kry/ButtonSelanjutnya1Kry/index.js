@@ -73,7 +73,7 @@ const ButtonSelanjutnya1Kry = (props) => {
                     return;
                 }    
             })
-            .catch(error => alert(''))
+            .catch(error => alert(error))
             .finally(() => setLoading(false));
             };
             

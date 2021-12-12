@@ -4,8 +4,10 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_6 = () => {
+const FormPengisian_1_6 = ({callBack, callBack2}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [rs, setRs] = useState("");
+
     return (
         <View style={styles.container}>
             {/* Apakah dalam 7 hari terakhir Anda pernah mengunjungi rumah sakit atau fasilitas kesehatan lainnya? (misal: klinik/puskesmas) */}
@@ -19,11 +21,11 @@ const FormPengisian_1_6 = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Ya" value="1" />
-                        <Picker.Item label="Tidak" value="0" />
+                        <Picker.Item label="Ya" value="y" />
+                        <Picker.Item label="Tidak" value="t" />
                     </Picker>
                 </View>
             </View>
@@ -35,6 +37,7 @@ const FormPengisian_1_6 = () => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
+                    onChangeText={rs => setRs(callBack2(rs))}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    
