@@ -7,6 +7,7 @@ import NotifPengisian from './NotifPengisian'
 import ButtonIsiFormulir from './ButtonIsiFormulir'
 import TablePengisian from './TablePengisian'
 import TablePengisianMahasiswa from './TablePengisianMahasiswa'
+import TableLaporanMahasiswa from './TableLaporanMahasiswa'
 import TablePengumuman from './TablePengumuman'
 import CellAksiFormulir from './CellAksiFormulir'
 import CellAksiFormulirMahasiswa from './CellAksiFormulirMahasiswa'
@@ -44,7 +45,7 @@ import {ButtonKembali, Form_1, Form_2, Form_3, Form_4, Form_1_karyawan,
     TemplateInfo, CheckboxPenyakit,TableKesehatan, TemplateRow} from './components_abs_detail'
 import {TablePengumumanKry, TablePengumumanMhs, TablePengumumanSatgas} from './TablePengumuman'
 
-export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInformation, HeaderApps,
+export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInformation, HeaderApps, TableLaporanMahasiswa,
     InformasiPengisian, NotifPengisian, ButtonIsiFormulir, CellAksiFormulir, CellAksiFormulirMahasiswa,
     TablePengumuman, TablePengumumanMhs, TablePengumumanKry, TablePengumumanSatgas, CellAksiPengumuman, FormUbahSandi, ButtonSimpanSandi,
     HeaderFormAbsesni, InformasiDataDiri, InformasiDataDiriKaryawan, FormPengisian_1_1, InformasiTinggalBersama,

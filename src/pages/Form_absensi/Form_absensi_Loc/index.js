@@ -26,11 +26,15 @@ const Form_absensi_Loc = ({navigation}) => {
     const [
       nim,
       setNim
-    ] = useState('0320190027');
+    ] = useState('0320190024');
     const [
       idForm,
       setIdForm
-    ] = useState('4');
+    ] = useState('2');
+    const [
+      address,
+      setAddress
+    ] = useState('Cikarang');
   const [
     currentLongitude,
     setCurrentLongitude
