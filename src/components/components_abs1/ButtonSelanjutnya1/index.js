@@ -25,66 +25,66 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     const [rsDesc, setRSDesc] = useState('tes')
 
     const PindahForm = () => {
+        let astra = kos
+        console.log("BtnSelanjutnya " + JSON.stringify({kos}))
         
-        AsyncStorage.getItem('provinsi', (error, result) => {
-            if(result){
-                //Parse result ke JSON
-                let resultParsed = JSON.parse(result)
-                tinggal = resultParsed.myProvinsi
-            }
-            else 
-            {
-                // tinggal = 5;
-            }
-        });
+        // AsyncStorage.getItem('provinsi', (error, result) => {
+        //     if(result){
+        //         //Parse result ke JSON
+        //         let resultParsed = JSON.parse(result)
+        //         tinggal = resultParsed.myProvinsi
+        //     }
+        //     else 
+        //     {
+        //         // tinggal = 5;
+        //     }
+        // });
 
-        alert('Berhasil tambah data ' + tinggal + ' data');
-        // props.navigation.navigate('Form_absensi_2')
+        // alert('Berhasil tambah data ' + tinggal + ' data');
+        navigation.navigate('Form_absensi_2')
     }
 
     const handleSubmitPress = () => {
-        let astra = kos
-        console.log("BtnSelanjutnya " + {kos})
 
-        // axios
-        //     .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
-        //     &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
-        //     &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
-        //     .then((res) => {
+        axios
+            .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
+            &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
+            &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
+            .then((res) => {
                 
-        //         if(res.data.result === "SUCCESS") {
-        //             // let step = res.data.step;
-        //             let fma_id = res.data.fma_id;
+                if(res.data.result === "SUCCESS") {
+                    // let step = res.data.step;
+                    let fma_id = res.data.fma_id;
                 
-        //             // let data = {
-        //             //     step: step,
-        //             //     nim: nim
-        //             // }
+                    // let data = {
+                    //     step: step,
+                    //     nim: nim
+                    // }
 
-        //             //notif kalo berhasil diubah
-        //             // alert('Berhasil tambah data ' + tinggal);
+                    //notif kalo berhasil diubah
+                    // alert('Berhasil tambah data ' + tinggal);
                     
                     navigation.navigate('Form_absensi_2')
 
-        //             return;
-        //         }
-        //         else
-        //         {
-        //             //notif gagal diubah
-        //             console.log(error);
-        //             alert('Gagal menambah data!');
-        //             return;
-        //         }    
-        //     })
-        //     .catch(error => alert(error))
-        //     // .finally(() => setLoading(false));
+                    return;
+                }
+                else
+                {
+                    //notif gagal diubah
+                    console.log(error);
+                    alert('Gagal menambah data!');
+                    return;
+                }    
+            })
+            .catch(error => alert(error))
+            // .finally(() => setLoading(false));
             };
             
     return (
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={handleSubmitPress}
-                // onPress={PindahForm}
+                // onPress={handleSubmitPress}
+                onPress={PindahForm}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>
