@@ -3,7 +3,7 @@ import React from 'react'
 import axios, { Axios } from 'axios'
 import { StyleSheet, Text, View, Image, Dimensions, ScrollView } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { ButtonTutupPengumuman } from '../../../components'
+import { ButtonTutupPengMhs } from '../../../components'
 import { WARNA_HITAM, LINK_API } from '../../../utils/constants'
 
 
@@ -34,6 +34,7 @@ export default class Riwayat_pengumuman_detail extends Component{
     }
     render(){
         const state = this.state;
+        const props = this.props;
         return (
             <View style={styles.container}>
                 <View style={ styles.page }>            
@@ -53,7 +54,7 @@ export default class Riwayat_pengumuman_detail extends Component{
                             <Text style={styles.textHeader}>
                             Isi Pengumuman
                             </Text>
-                            <View style={styles.containerImage}>
+                            {/* <View style={styles.containerImage}>
                                 <Image
                                     source={{
                                         uri : state.data.pen_isi,
@@ -63,11 +64,14 @@ export default class Riwayat_pengumuman_detail extends Component{
                                     style={styles.image}
                                     resizeMode="contain"
                                     />
-                            </View>                
+                            </View>                 */}
+                            <Text style={styles.textBody}>
+                                {state.data.pen_isi}
+                            </Text>
                         </View>
             
                         <View style={styles.button}>
-                            <ButtonTutupPengumuman/>
+                            <ButtonTutupPengMhs navigation={props.navigation}/>
                         </View>
                     </View>
                 </ScrollView>

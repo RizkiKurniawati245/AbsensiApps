@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView } from
 import { Component } from 'react/cjs/react.production.min'
 import { ButtonKembali, Form_1_karyawan, Form_2 } from '../../../components'
 import { WARNA_HITAM, LINK_API, WARNA_PUTIH , WARNA_BG_FORM, WARNA_KUNING, WARNA_SEKUNDER} from '../../../utils/constants'
+import ButtonKembaliKaryawan from '../../../components/components_abs_detail/ButtonKembaliKaryawan'
 
 export default class Riwayat_absensi_detail extends Component {
     constructor(props){
@@ -43,7 +44,7 @@ export default class Riwayat_absensi_detail extends Component {
                         {/* <Form_3/>
                         <Form_4/> */}
                         <View style={styles.button}>
-                            <ButtonKembali/>
+                            <ButtonKembaliKaryawan navigation={this.props.navigation}/>
                         </View>
                     </View>
                 </ScrollView>

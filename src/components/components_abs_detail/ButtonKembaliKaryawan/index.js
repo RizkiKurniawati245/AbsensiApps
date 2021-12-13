@@ -2,9 +2,9 @@ import React from 'react'
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { WARNA_PUTIH, WARNA_UNGU_MUDA } from '../../../utils/constants'
 
-const ButtonKembali = (props) => {
+const ButtonKembaliKaryawan = (props) => {
     const backForm = () => {
-        props.navigation.navigate('Riwayat_absensi_mahasiswa_list')
+        props.navigation.navigate('Riwayat_absensi_list')
     }
     return (
         <View style={styles.container}>
@@ -17,7 +17,7 @@ const ButtonKembali = (props) => {
     )
 }
 
-export default ButtonKembali
+export default ButtonKembaliKaryawan
 
 const styles = StyleSheet.create({
     container:{
