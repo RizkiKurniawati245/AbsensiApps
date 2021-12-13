@@ -37,6 +37,13 @@ function rSakit(a, b){
     return a
 };
 
+// const coba = (a, b) => {
+//     this.setState({
+//         astra : a,
+//         astraDesc: b
+//     })
+// }
+
 class Form_absensi_1 extends Component {
     constructor(props){
         super(props);
@@ -56,12 +63,23 @@ class Form_absensi_1 extends Component {
 
     kosTemen(a, b){
         console.log("Kos Temen " + a + " " + b)
-        const coba = (a) => {
-            this.setState({
-                astra : a,
-                astraDesc: b
-            })
-        }
+        // this.setState({
+            astra: a
+        // })
+        // coba(a, b)
+            // const coba = (a, b) => {
+            //     this.setState({
+            //         astra : a,
+            //         astraDesc: b
+            //     })
+            // }
+            // setInputState(event) {
+            //     this.setState({
+            //         term: event.target.value 
+            //     })
+            //   }
+
+            // coba(a,b)
         return a;
     };
 
@@ -74,7 +92,7 @@ class Form_absensi_1 extends Component {
                 let resultParsed = JSON.parse(result)
                 username = resultParsed.uname
                 console.log(username)
-                
+
                 axios
                 .get(`${LINK_API}Absensi/GetDataInformasiMahasiswa?username=${username}`)
                 .then((res) => {
@@ -122,8 +140,8 @@ class Form_absensi_1 extends Component {
                 <View style={styles.button}>
                     {/* <ButtonBatal1/> */}
                     {/* <ButtonSelanjutnya1/> */}
-                    <ButtonSelanjutnya1 navigation={this.props.navigation} kos={this.state.astra} 
-                    prof={profesi} ken={kendaraan} rs={rSakit}
+                    <ButtonSelanjutnya1 navigation={this.props.navigation} kos={this.state.astra}
+                    // prof={profesi} ken={kendaraan} rs={rSakit}
                     />
                 </View>
             </ScrollView>
