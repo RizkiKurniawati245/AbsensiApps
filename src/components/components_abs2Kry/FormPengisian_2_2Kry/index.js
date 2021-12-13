@@ -4,8 +4,10 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_2Kry = () => {
+const FormPengisian_2_2Kry = ({callBack, callBack2}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [sehat, setSehat] = useState("");
+
     return (
         <View style={styles.container}>            
             {/* Bagaimana kondisi kesehatan keluarga Anda/kerabat Anda saat ini? (Jika berada di rumah orang tua/kerabat) */}
@@ -20,7 +22,7 @@ const FormPengisian_2_2Kry = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />
@@ -36,6 +38,7 @@ const FormPengisian_2_2Kry = () => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
+                    onChangeText={sehat => setSehat(callBack2(sehat))}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

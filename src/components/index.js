@@ -93,5 +93,6 @@ export {TablePengisian, TablePengisianMahasiswa, BottomTabNavigator, HeaderInfor
     
     FormPengisian_5_1, ButtonSelesai, ButtonUnduhFormulir,
     InformationPenting, ButtonKembali, Form_1, Form_2, Form_3, Form_4, TemplateInfo, CheckboxPenyakit, Form_1_karyawan,
+    
     TableKesehatan, TemplateRow, ButtonTutupPengumuman, ButtonLogin, CellAksiPengumumanSatgas, CellAksiPengumumanKaryawan, CellAksiPengumumanMahasiswa, CellAksiTampilPengumumanSatgas, CellAksiUbahPengumumanSatgas
     ,ButtonTambahPengumuman, ButtonTutupPengKry, ButtonTutupPengMhs, ButtonTutupPengSat};

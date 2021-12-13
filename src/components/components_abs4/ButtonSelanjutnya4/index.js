@@ -10,7 +10,7 @@ const ButtonSelanjutnya4 = (props) => {
     const [pertanyaan, setPertanyaan] = useState('2')
     const [jawaban, setJawaban] = useState('Kode')
     const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('2')
+    const [idForm, setIdForm] = useState('12')
     const [total, setTotal] = useState('1')
     const [resiko, setResiko] = useState('Hijau')
     
@@ -20,13 +20,15 @@ const ButtonSelanjutnya4 = (props) => {
 
     const handleSubmitPress = () => {
         for(let i = 0; i < 8; i++){
+            console.log(idForm);
             axios
             .post(`${LINK_API}Absensi/CreateDeklarasi?nim=${nim}&idForm=${idForm}
             &pertanyaaan=${i}&jawaban=${jawaban}`)
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
+                    console.log(res.data.result);
 
-                    let fma_id = res.data.fma_id;
+                    // let fma_id = res.data.fma_id;
 
                     // alert('Berhasil tambah data ' + fma_id);
                     return;
@@ -34,12 +36,13 @@ const ButtonSelanjutnya4 = (props) => {
                 else
                 {
                     //notif gagal diubah
-                    console.log(error);
+                    console.log("else " + error);
                     alert('Gagal menambah data!');
                     return;
                 }    
             })
-            .catch(error => alert(error))
+            // .catch(error => alert('Coba ' + error))
+            // .catch(error => alert(''))
         }
 
         axios
@@ -48,11 +51,11 @@ const ButtonSelanjutnya4 = (props) => {
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
 
-                    let fma_id = res.data.fma_id;
-                    let bom_total = res.data.bom_total;
-                    let bom_resiko = res.data.bom_resiko;
+                    // let fma_id = res.data.fma_id;
+                    // let bom_total = res.data.bom_total;
+                    // let bom_resiko = res.data.bom_resiko;
 
-                    props.navigation.navigate('Form_absensi_5')
+                    props.navigation.navigate('Form_absensi_Loc')
 
                     // alert('Berhasil tambah data ' + fma_id + " " + bom_total);
                     return;
@@ -66,15 +69,15 @@ const ButtonSelanjutnya4 = (props) => {
                 }    
             })
             .catch(error => alert('Gagal'))
-            .finally(() => setLoading(false));
+            // .finally(() => setLoading(false));
         };
             
 
     return (        
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={PindahForm}
-                // onPress={handleSubmitPress}
+                // onPress={PindahForm}
+                onPress={handleSubmitPress}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>
