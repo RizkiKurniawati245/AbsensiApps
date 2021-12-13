@@ -3,7 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import { HeaderApps,HeaderInformation, TablePengisian, TablePengumumanSatgas } from '../../components'
 import { WARNA_PUTIH } from '../../utils/constants'
-import {Riwayat_pengumuman_list_sat, Riwayat_pengumuman_detail_sat, Form_create_pengumuman } from './Riwayat_pengumuman_sat_routing'
+import {Riwayat_pengumuman_list_sat, Riwayat_pengumuman_detail_sat, Form_create_pengumuman, Form_ubah_pengumuman } from './Riwayat_pengumuman_sat_routing'
 
 const Stack = createStackNavigator();
 
@@ -24,6 +24,12 @@ const IndexPengumuman_sat = () => {
                 />
             <Stack.Screen name="Form_create_pengumuman"
                 component={Form_create_pengumuman} 
+                options={{
+                     headerShown:false
+                }}
+                />
+            <Stack.Screen name="Form_ubah_pengumuman"
+                component={Form_ubah_pengumuman} 
                 options={{
                      headerShown:false
                 }}
