@@ -30,7 +30,9 @@ const Form_absensi_Loc = ({navigation}) => {
     const [
       idForm,
       setIdForm
+
     ] = useState('2');
+
     const [
       address,
       setAddress
@@ -105,7 +107,7 @@ const Form_absensi_Loc = ({navigation}) => {
         setLocationStatus(error.message);
       },
       {
-        enableHighAccuracy: false,
+        enableHighAccuracy: true,
         timeout: 30000,
         maximumAge: 1000
       },
@@ -116,7 +118,7 @@ const Form_absensi_Loc = ({navigation}) => {
         // alert(nim + ' ' + idForm + ' ' + currentLongitude + '  ' + currentLatitude);
         axios
         .post(`${LINK_API}Absensi/CreateLoc?nim=${nim}&idForm=${idForm}
-        &latitude=${currentLongitude}&longitude=${currentLatitude}`)
+        &latitude=${currentLongitude}&longitude=${currentLatitude}&address=${address}`)
         .then((res) => {
             if(res.data.result === "SUCCESS") {
 

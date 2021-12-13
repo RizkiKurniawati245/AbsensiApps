@@ -1,6 +1,8 @@
-import React from 'react'
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { WARNA_HITAM, WARNA_PUTIH, WARNA_UNGU_MUDA } from '../../../utils/constants'
+import React, { useState } from 'react'
+import { Alert, StyleSheet, Text, TouchableOpacity, View, AsyncStorage } from 'react-native'
+import { WARNA_HITAM, WARNA_PUTIH, WARNA_UNGU_MUDA, LINK_API } from '../../../utils/constants'
+import { notifikasi } from '../Notifikasi'
+import axios, { Axios } from 'axios'
 
 const ButtonSelesai = (props) => {
     const [idForm, setIdForm] = useState('3')
@@ -33,7 +35,7 @@ const ButtonSelesai = (props) => {
                 // let bom_resiko = "Hijau";
 
                 notifikasi.configure();
-                notifikasi.buatChannel("2");
+
                 notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
                 // notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
                 props.navigation.navigate('Form_absensi_sudah')
@@ -52,7 +54,8 @@ const ButtonSelesai = (props) => {
     return (        
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={() => Alert.alert("Selesai")}
+                onPress={PindahForm}
+                // onPress={() => Alert.alert("Selesai")}
             >
                 <Text style={styles.textButton}>SELESAI</Text>
             </TouchableOpacity>

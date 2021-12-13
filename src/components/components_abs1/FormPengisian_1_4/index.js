@@ -4,8 +4,10 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_4 = () => {
+const FormPengisian_1_4 = ({callBack, callBack2}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [kontak, setKontak] = useState("");
+
     return (
         <View style={styles.container}>
             {/* Nomor Kontak Lain yang Bisa Dihubungi */}
@@ -15,8 +17,9 @@ const FormPengisian_1_4 = () => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
-                        style={styles.textInput}                    
-                    />
+                    onChangeText={kontak => setKontak(callBack2(kontak))}
+                    style={styles.textInput}
+                />
             </View>
 
             {/* Apakah keluarga Anda ada yang berprofesi sebagai berikut? */}
@@ -30,14 +33,14 @@ const FormPengisian_1_4 = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Dokter" value="" />
-                        <Picker.Item label="Perawat/Tenaga Medis non Dokter" value="" />
-                        <Picker.Item label="Pilot/Kru Penerbangan" value="" />
-                        <Picker.Item label="TNI/Polri" value="" />
-                        <Picker.Item label="Kru Kapal Laut" value="" />
+                        <Picker.Item label="Dokter" value="1" />
+                        <Picker.Item label="Perawat/Tenaga Medis non Dokter" value="2" />
+                        <Picker.Item label="Pilot/Kru Penerbangan" value="3" />
+                        <Picker.Item label="TNI/Polri" value="4" />
+                        <Picker.Item label="Kru Kapal Laut" value="5" />
                     </Picker>
                 </View>
             </View>

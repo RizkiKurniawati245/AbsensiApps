@@ -4,8 +4,11 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_3 = () => {
+const FormPengisian_1_3 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
+    const [info, setInfo] = useState("");
+
+    // console.log(selectedValue)
     return (
         <View style={styles.container}>            
             {/* Apakah Anda tinggal di kos/kontrakan bersama rekan mahasiswa/karyawan Polman Astra lain? */}
@@ -20,11 +23,14 @@ const FormPengisian_1_3 = () => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue); 
+                            callBack(selectedValue, info);
+                            }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Ya" value="" />
-                        <Picker.Item label="Tidak" value="" />
+                        <Picker.Item label="Ya" value="y" />
+                        <Picker.Item label="Tidak" value="t" />
                     </Picker>
                 </View>
             </View>
@@ -36,8 +42,12 @@ const FormPengisian_1_3 = () => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
-                        style={styles.textInput}                    
-                    />
+                    onChangeText={info => {
+                        setInfo(info); 
+                        callBack(selectedValue, info);
+                        }}
+                    style={styles.textInput}
+                />
             </View>
         </View>
     )

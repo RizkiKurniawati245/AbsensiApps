@@ -11,7 +11,7 @@ const Form_absensi_5 = ({navigation}) => {
                 <FormPengisian_5_1/>                
             </View>
             <View style={styles.button}>
-                <ButtonSelesai navigation = {navigation}/>
+                <ButtonSelesai navigation = {navigation} riwayat="true"/>
             </View>
         </View>
     )

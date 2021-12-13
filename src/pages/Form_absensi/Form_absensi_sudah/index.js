@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { NotifPengisian, TablePengisian } from '../../../components'
+import { NotifPengisian, TablePengisian, TablePengisianMahasiswa } from '../../../components'
 import { WARNA_PUTIH } from '../../../utils/constants'
 
 const Form_absensi_sudah = ({navigation}) => {
@@ -11,7 +11,7 @@ const Form_absensi_sudah = ({navigation}) => {
                     <ScrollView style={styles.containerScroll}>
                         <View styl={styles.container}>
                             <NotifPengisian/>
-                            <TablePengisian navigation={navigation}/>
+                            <TablePengisianMahasiswa navigation={navigation}/>
                         </View>
                     </ScrollView>
                 </View>

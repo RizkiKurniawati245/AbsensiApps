@@ -1,40 +1,86 @@
-import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { FormPengisian_1_2, FormPengisian_1_3,FormPengisian_1_4,
-    FormPengisian_1_5, FormPengisian_1_6, FormPengisian_2_1, FormPengisian_2_2, FormPengisian_2_3,
-    FormPengisian_2_4, FormPengisian_2_5, FormPengisian_2_6, HeaderFormAbsesni, InformasiDataDiri, ButtonSelanjutnya1 }
+import React, { Component, useState } from 'react'
+import { ScrollView, StyleSheet, Text, View, AsyncStorage } from 'react-native'
+import { FormPengisian_1_2Kry, FormPengisian_1_3,FormPengisian_1_4,
+    FormPengisian_1_5Kry, FormPengisian_1_6Kry, FormPengisian_2_1Kry, FormPengisian_2_2Kry, FormPengisian_2_3Kry,
+    FormPengisian_2_4Kry, FormPengisian_2_5Kry, FormPengisian_2_6Kry, HeaderFormAbsesni, InformasiDataDiriKry, ButtonSelanjutnya1Kry }
     from '../../../components'
 
+import { LINK_API, WARNA_SEKUNDER } from '../../../utils/constants'
+import axios, { Axios } from 'axios'
 
-import { WARNA_SEKUNDER } from '../../../utils/constants'
+class Form_absensi_1 extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            kryId:'',
+            namaDepan:'',
+            namaBelakang:'',
+            strDesc:''
+        } 
+    }
 
-const Form_absensi_1 = () => {
-    return (
-        <View>
-            <ScrollView style={styles.containerScrollView}>
-                <View style={styles.containerForm}>            
-                    <HeaderFormAbsesni text={"Langkah 1 / 5 : Mengisi Data Diri dan Keluarga"}/>
-                    <InformasiDataDiri/>
-                    <FormPengisian_1_2/>
-                    {/* <FormPengisian_1_3/> */}
-                    {/* <FormPengisian_1_4/> */}
-                    <FormPengisian_2_1/>
-                    <FormPengisian_2_2/>
-                    <FormPengisian_2_3/>
-                    <FormPengisian_2_4/>
-                    <FormPengisian_1_5/>
-                    <FormPengisian_1_6/>
-                    <FormPengisian_2_6/>
-                    <FormPengisian_2_5/>
-                </View>
-                <View style={styles.button}>
-                    {/* <ButtonBatal1/> */}
-                    <ButtonSelanjutnya1/>
-                </View>
-            </ScrollView>
-        </View>
+    
+    componentDidMount() {    
+        let username = ''    
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                username = resultParsed.uname
+                console.log(username)
+
+                axios
+                .get(`${LINK_API}Absensi/GetDataInformasiKaryawan?username=yosep.setiawan`)
+                .then((res) => {
+                    if(res.data[0].result === "SUCCESS") {
         
-    )
+                        this.setState({
+                            kryId:res.data[0].kry_id,
+                            namaDepan:res.data[0].kry_nama_depan,
+                            namaBelakang:res.data[0].kry_nama_belakang,
+                            strDesc:res.data[0].str_desc
+                        })
+                        return;
+                    }
+                    else
+                    {
+                        alert('Gagal menambah data!');
+                        return;
+                    }
+                })
+                .catch(error => alert(error))
+                return username;
+            }
+        });
+    }
+
+    render(){
+        return (
+            <View>
+                <ScrollView style={styles.containerScrollView}>
+                    <View style={styles.containerForm}>
+                        <HeaderFormAbsesni text={"Langkah 1 / 5 : Mengisi Data Diri dan Keluarga"}/>
+                        <InformasiDataDiriKry id={this.state.kryId} namaDpn={this.state.namaDepan}
+                        namaBlkg={this.state.namaBelakang} status={this.state.strDesc} />
+                        <FormPengisian_1_2Kry/>
+                        <FormPengisian_2_1Kry/>
+                        <FormPengisian_2_2Kry/>
+                        <FormPengisian_2_3Kry/>
+                        <FormPengisian_2_4Kry/>
+                        <FormPengisian_1_5Kry/>
+                        <FormPengisian_1_6Kry/>
+                        <FormPengisian_2_6Kry/>
+                        <FormPengisian_2_5Kry/>
+                    </View>
+                    <View style={styles.button}>
+                        {/* <ButtonBatal1/> */}
+                    <ButtonSelanjutnya1Kry navigation={this.props.navigation}
+                    />
+                    </View>
+                </ScrollView>
+            </View>
+        )
+    }
 }
 
 export default Form_absensi_1

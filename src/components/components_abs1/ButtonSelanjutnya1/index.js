@@ -6,9 +6,10 @@ import axios, { Axios } from 'axios'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 
-const ButtonSelanjutnya1 = (props) => {
+const ButtonSelanjutnya1 = ({navigation, kos}) => {
     // let tinggal = ''
 
+    // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
     const [nim, setNim] = useState('0320190003')
@@ -24,24 +25,27 @@ const ButtonSelanjutnya1 = (props) => {
     const [rsDesc, setRSDesc] = useState('tes')
 
     const PindahForm = () => {
+        let astra = kos
+        console.log("BtnSelanjutnya " + JSON.stringify({kos}))
         
-        AsyncStorage.getItem('provinsi', (error, result) => {
-            if(result){
-                //Parse result ke JSON
-                let resultParsed = JSON.parse(result)
-                tinggal = resultParsed.myProvinsi
-            }
-            else 
-            {
-                // tinggal = 5;
-            }
-        });
+        // AsyncStorage.getItem('provinsi', (error, result) => {
+        //     if(result){
+        //         //Parse result ke JSON
+        //         let resultParsed = JSON.parse(result)
+        //         tinggal = resultParsed.myProvinsi
+        //     }
+        //     else 
+        //     {
+        //         // tinggal = 5;
+        //     }
+        // });
 
-        alert('Berhasil tambah data ' + tinggal + ' data');
-        // props.navigation.navigate('Form_absensi_2')
+        // alert('Berhasil tambah data ' + tinggal + ' data');
+        navigation.navigate('Form_absensi_2')
     }
 
     const handleSubmitPress = () => {
+
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
             &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
@@ -59,11 +63,8 @@ const ButtonSelanjutnya1 = (props) => {
 
                     //notif kalo berhasil diubah
                     // alert('Berhasil tambah data ' + tinggal);
-
-                    // console.log(data);
-                    // navigation.replace('Absensi4');
-                    // navigation.navigate('Absensi4');
-                    props.navigation.navigate('Form_absensi_2')
+                    
+                    navigation.navigate('Form_absensi_2')
 
                     return;
                 }
@@ -76,14 +77,14 @@ const ButtonSelanjutnya1 = (props) => {
                 }    
             })
             .catch(error => alert(error))
-            .finally(() => setLoading(false));
+            // .finally(() => setLoading(false));
             };
             
     return (
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={handleSubmitPress}
-                // onPress={PindahForm}
+                // onPress={handleSubmitPress}
+                onPress={PindahForm}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

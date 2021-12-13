@@ -4,7 +4,7 @@ import CheckBox from '@react-native-community/checkbox'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_5 = () => {
+const FormPengisian_2_5 = ({callBack, callBack2, callBack3, callBack4, callBack5, callBack6, callBack7}) => {
     const [isSelected, setSelection] = useState(false);
     const [isSelected1, setSelection1] = useState(false);
     const [isSelected2, setSelection2] = useState(false);
@@ -26,7 +26,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected}
-                        onValueChange={setSelection}                
+                        onValueChange={(isSelected) => setSelection(callBack(isSelected))}
                     />
                     <Text style={styles.label}>Hipertensi</Text>
                 </View>
@@ -35,7 +35,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected1}
-                        onValueChange={setSelection1}
+                        onValueChange={(isSelected1) => setSelection1(callBack2(isSelected1))}
                     />
                     <Text style={styles.label}>Diabetes</Text>
                 </View>
@@ -44,7 +44,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected2}
-                        onValueChange={setSelection2}
+                        onValueChange={(isSelected2) => setSelection2(callBack3(isSelected2))}
                     />
                     <Text style={styles.label}>Jantung</Text>
                 </View>
@@ -53,7 +53,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected3}
-                        onValueChange={setSelection3}
+                        onValueChange={(isSelected3) => setSelection3(callBack4(isSelected3))}
                     />
                     <Text style={styles.label}>Gangguan Paru-Paru (Misalnya : Asma)</Text>
                 </View>
@@ -62,7 +62,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected4}
-                        onValueChange={setSelection4}
+                        onValueChange={(isSelected4) => setSelection4(callBack5(isSelected4))}
                     />
                     <Text style={styles.label}>Ginjal</Text>
                 </View>
@@ -71,7 +71,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected5}
-                        onValueChange={setSelection5}
+                        onValueChange={(isSelected5) => setSelection5(callBack6(isSelected5))}
                     />
                     <Text style={styles.label}>Lever</Text>
                 </View>
@@ -80,7 +80,7 @@ const FormPengisian_2_5 = () => {
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected6}
-                        onValueChange={setSelection6}
+                        onValueChange={(isSelected6) => setSelection6(callBack7(isSelected6))}
                     />
                     <Text style={styles.label}>Tidak ada satupun  tertera di atas</Text>
                 </View>
