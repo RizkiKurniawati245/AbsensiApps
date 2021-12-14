@@ -1,22 +1,22 @@
 import React from 'react'
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import TableLaporan from '../../components/TableLaporan';
+import { TableLaporanMahasiswa } from '../../components'
 import { WARNA_BG_FORM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../utils/constants'
 
 let rolget = '';
 
-const Laporan_satgas = ({hasAbsen=false, navigation}) => {
+const Laporan_satgas_mahasiswa = ({hasAbsen=false, navigation}) => {
     return (
         <View style={ styles.page }>                
             <ScrollView style={styles.containerScroll}>
-                <TableLaporan navigation={navigation}/>
+                <TableLaporanMahasiswa navigation={navigation}/>
             </ScrollView>
         </View>
                       
     )
 }
 
-export default Laporan_satgas
+export default Laporan_satgas_mahasiswa
 
 const styles = StyleSheet.create({
     page:{ 
