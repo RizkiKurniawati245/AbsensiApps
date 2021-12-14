@@ -50,13 +50,9 @@ export default class Riwayat_absensi_mahasiswa_detail extends Component{
                     </View>
                 </ScrollView>
             </View>
-
-            
         )
     }
 }
-
-
 
 const styles = StyleSheet.create({
     container:{

@@ -17,4 +17,3 @@ import Testing from './Testing'
 export {Beranda, Beranda_karyawan, Beranda_satgas, Form_absensi, Form_absensi_Kry, Riwayat_absensi_mahasiswa, 
     Riwayat_absensi, Riwayat_pengumuman, Riwayat_pengumuman_karyawan, Riwayat_pengumuman_satgas, 
     Ubah_sandi, Testing, Login, Laporan_satgas, Laporan_satgas_mahasiswa}
-
