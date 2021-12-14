@@ -63,43 +63,43 @@ class TableKesehatanMahasiswa extends Component {
                         // question={this.state.pertanyaan[index].per_deskripsi}
                         question="Apakah pernah keluar rumah/tempat umum (pasar, fasyankes, kerumunan orang, dan lain-lain)?"
                         // answer="Tidak"
-                        answer={myValue[0].fdm_jawaban}
+                        answer={myValue[0].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="2"
                         question="Apakah pernah menggunakan transportasi umum?"
                         // answer="Tidak"
-                        answer={myValue[1].fdm_jawaban}
+                        answer={myValue[1].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="3"
                         question="Apakah pernah melakukan perjalanan ke luar kota/internasional? (wilayah yang terjangkit/zona merah)"
                         // answer="Tidak"
-                        answer={myValue[2].fdm_jawaban}
+                        answer={myValue[2].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="4"
                         question="Apakah anda mengikuti kegiatan yang melibatkan orang banyak?"
                         // answer="Tidak"
-                        answer={myValue[3].fdm_jawaban}
+                        answer={myValue[3].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="5"
                         question="Apakah memiliki riwayat kontak erat dengan orang yang dinyatakan ODP, PDP atau konfirm COVID-19 (berjabat tangan, berbicara, berada dalam satu ruangan/satu rumah)?"
                         // answer="Tidak"
-                        answer={myValue[4].fdm_jawaban}
+                        answer={myValue[4].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="6"
                         question="Apakah pernah mengalami demam/batuk/pilek/sakit tenggorokan/sesak dalam 14 hari terakhir?"
                         // answer="Tidak"
-                        answer={myValue[5].fdm_jawaban}
+                        answer={myValue[5].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                     <TemplateRow
                         no="7"
                         question="Apakah terdapat riwayat berkunjung dan/atau dikunjungi tamu (kerabat/keluarga berbeda rumah) dalam jangka waktu 14 hari terakhir?"
                         // answer="Tidak"
-                        answer={myValue[6].fdm_jawaban}
+                        answer={myValue[6].fdm_jawaban == "1" ? "Ya" : "Tidak"}
                     />
                 </View>
             )
