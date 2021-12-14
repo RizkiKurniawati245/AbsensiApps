@@ -14,7 +14,7 @@ const ButtonSelanjutnya1 = ({
     // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
-    const [nim, setNim] = useState('0320190027')
+    const [nim, setNim] = useState('0320190024')
     const [tinggal, setTinggal] = useState('Jl.Papanggo, Jawa Barat, Kabupaten Bekasi')
     const [posisi, setPosisi] = useState('Bandung')
     const [astra, setAstra] = useState('y')

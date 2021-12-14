@@ -10,7 +10,7 @@ const ButtonSelanjutnya4 = (props) => {
     // var jawaban = [];
     const [pertanyaan, setPertanyaan] = useState('2')
     const [jawaban, setJawaban] = useState('0')
-    const [nim, setNim] = useState('0320190027')
+    const [nim, setNim] = useState('0320190024')
     const [idForm, setIdForm] = useState('3')
     const [total, setTotal] = useState('1')
     const [resiko, setResiko] = useState('Hijau')
@@ -37,61 +37,62 @@ const ButtonSelanjutnya4 = (props) => {
                     // idForm = res.data.fma_id;
 
                     console.log("coba 3 " + res.data[0].fma_id);
-                    return;
-            })
-            .catch(error => alert(error))
+                    for(let i = 0; i < 8; i++){
+                        console.log(idForm);
+                        axios
+                        .post(`${LINK_API}Absensi/CreateDeklarasi?nim=${nim}&idForm=${res.data[0].fma_id}
+                        &pertanyaaan=${i}&jawaban=${jawaban}`)
+                        .then((res) => {
+                            if(res.data.result === "SUCCESS") {
+                                console.log(res.data.result);
             
-        for(let i = 0; i < 8; i++){
-            console.log(idForm);
-            axios
-            .post(`${LINK_API}Absensi/CreateDeklarasi?nim=${nim}&idForm=${idForm}
-            &pertanyaaan=${i}&jawaban=${jawaban}`)
-            .then((res) => {
-                if(res.data.result === "SUCCESS") {
-                    console.log(res.data.result);
-
-                    // let fma_id = res.data.fma_id;
-
-                    // alert('Berhasil tambah data ' + fma_id);
+                                // let fma_id = res.data.fma_id;
+            
+                                // alert('Berhasil tambah data ' + fma_id);
+                                return;
+                            }
+                            else
+                            {
+                                //notif gagal diubah
+                                console.log("else " + error);
+                                alert('Gagal menambah data!');
+                                return;
+                            }    
+                        })
+                        // .catch(error => alert('Coba ' + error))
+                        // .catch(error => alert(''))
+                    }
+            
+                    console.log(nim + " " + res.data[0].fma_id + " " + total + " " + resiko)
+                    axios
+                        .post(`${LINK_API}Absensi/CreateDeklarasiExt?nim=${nim}&idForm=${res.data[0].fma_id}
+                        &total=${total}&resiko=${resiko}`)
+                        .then((res) => {
+                            if(res.data.result === "SUCCESS") {
+            
+                                // let fma_id = res.data.fma_id;
+                                // let bom_total = res.data.bom_total;
+                                // let bom_resiko = res.data.bom_resiko;
+            
+                                props.navigation.navigate('Form_absensi_Loc')
+            
+                                // alert('Berhasil tambah data ' + fma_id + " " + bom_total);
+                                return;
+                            }
+                            else
+                            {
+                                //notif gagal diubah
+                                console.log(error);
+                                alert('Gagal menambah data!');
+                                return;
+                            }    
+                        })
+                        .catch(error => alert(error))
                     return;
-                }
-                else
-                {
-                    //notif gagal diubah
-                    console.log("else " + error);
-                    alert('Gagal menambah data!');
-                    return;
-                }    
             })
-            .catch(error => alert('Coba ' + error))
-            .catch(error => alert(''))
-        }
-
-        console.log(nim + " " + idForm + " " + total + " " + resiko)
-        axios
-            .post(`${LINK_API}Absensi/CreateDeklarasiExt?nim=${nim}&idForm=${idForm}
-            &total=${total}&resiko=${resiko}`)
-            .then((res) => {
-                if(res.data.result === "SUCCESS") {
-
-                    // let fma_id = res.data.fma_id;
-                    // let bom_total = res.data.bom_total;
-                    // let bom_resiko = res.data.bom_resiko;
-
-                    props.navigation.navigate('Form_absensi_Loc')
-
-                    // alert('Berhasil tambah data ' + fma_id + " " + bom_total);
-                    return;
-                }
-                else
-                {
-                    //notif gagal diubah
-                    console.log(error);
-                    alert('Gagal menambah data!');
-                    return;
-                }    
-            })
-            .catch(error => alert(error))
+            // .catch(error => alert(error))
+            
+        
             // .finally(() => setLoading(false));
             };
         });

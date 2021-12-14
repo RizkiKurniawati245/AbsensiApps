@@ -27,7 +27,7 @@ const Form_absensi_Loc = ({navigation}) => {
     const [
       nim,
       setNim
-    ] = useState('0320190027');
+    ] = useState('0320190024');
     const [
       idForm,
       setIdForm
@@ -173,12 +173,8 @@ const Form_absensi_Loc = ({navigation}) => {
               // idForm = res.data.fma_id;
 
               console.log("coba 3 " + res.data[0].fma_id);
-              return;
-      })
-      .catch(error => alert(error))
-
-        axios
-        .post(`${LINK_API}Absensi/CreateLoc?nim=${nim}&idForm=${idForm}
+              axios
+        .post(`${LINK_API}Absensi/CreateLoc?nim=${nim}&idForm=${res.data[0].fma_id}
         &latitude=${currentLongitude}&longitude=${currentLatitude}&address=${address3+","+address2+","+address}`)
         .then((res) => {
             if(res.data.result === "SUCCESS") {
@@ -197,6 +193,11 @@ const Form_absensi_Loc = ({navigation}) => {
             }    
         })
         .catch(error => alert(error))
+              return;
+      })
+      // .catch(error => alert(error))
+
+        
         // navigation.navigate('Form_absensi_5')
             };
         });

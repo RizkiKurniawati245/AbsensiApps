@@ -37,7 +37,7 @@ const ButtonSelesai = (props) => {
                     console.log("coba 3 " + res.data[0].fma_id);
                     return;
             })
-            .catch(error => alert(error))
+            // .catch(error => alert(error))
 
         axios
         .get(`${LINK_API}Resiko/GetResikoMahasiswaById?id=${idForm}`)
