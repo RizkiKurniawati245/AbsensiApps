@@ -8,7 +8,7 @@ const CellAksiFormulirMahasiswa = (props) => {
     const detailHandle = () => {
         // AsyncStorage.setItem('fma_id',props.fma_id+"")
         AsyncStorage.setItem('fma_id',props.fma_id+"")
-        props.navigation.navigate('Riwayat_absensi_mahasiswa_detail');
+        props.navigation.navigate('Form_absensi_detail');
     }
 
     return (

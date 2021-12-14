@@ -4,7 +4,7 @@ import { WARNA_PUTIH, WARNA_UNGU_MUDA } from '../../../utils/constants'
 
 const ButtonKembaliKaryawan = (props) => {
     const backForm = () => {
-        props.navigation.navigate('Riwayat_absensi_list')
+        props.navigation.navigate('Form_absensi_sudah')
     }
     return (
         <View style={styles.container}>

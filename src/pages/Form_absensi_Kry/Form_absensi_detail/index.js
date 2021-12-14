@@ -1,90 +1,96 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import axios, { Axios } from 'axios'
+import { StyleSheet, Text, View, Image, Dimensions, TextInput, ScrollView } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { ButtonKembali, Form_1, Form_2, Form_3, Form_4 } from '../../../components'
-import { WARNA_PUTIH } from '../../../utils/constants'
+import { Form_1_karyawan } from '../../../components'
+import { WARNA_HITAM, LINK_API, WARNA_PUTIH , WARNA_BG_FORM, WARNA_KUNING, WARNA_SEKUNDER} from '../../../utils/constants'
+import ButtonKembaliKaryawan from '../../../components/components_abs_detail/ButtonKembaliKaryawan'
+import Form_2_karyawan from '../../../components/components_abs_detail/Form_2_karyawan'
 
-
-class Form_absensi_detail extends Component{
+export default class Form_absensi_detail extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data : [],
-            value : ""
+            data: []
+          };
+    }
+
+    GetDetailAbsensiKaryawan = async () => {
+        try{
+            const for_id = await AsyncStorage.getItem('for_id');
+                axios
+                .get(`${LINK_API}Absensi/GetDetailAbsensiKaryawan?for_id=${for_id}`)
+                .then( res => {
+                        this.setState({
+                        data:res.data
+                        })
+                    })
+        }catch(error){
+            console.log(error);
         }
     }
-    _retrieveData = async () => {
-        try {
-          const value = await AsyncStorage.getItem('fma_id');
-          if (value !== null) {
-            // We have data!!
-            console.log("fma_id is : "+ value);
-            fetch('http://10.0.2.2:8080/listTrformabsensimahasiswaByFmaId?fma_id='+value)
-            .then(response => response.json())
-            .then(json => {
-                console.log(json)
-                this.setState({
-                    data:json.data,
-                    value : value
-                })
-            })
-          }
-        } catch (error) {
-          // Error retrieving data
-          console.log(error);
-        }
-      };
-      
     componentDidMount(){
-        this._retrieveData();
+      this.GetDetailAbsensiKaryawan();
     }
-    render() {
-        return(
-            <View style={ styles.page }>
+
+    render(){
+        // const state = this.state;
+        return (
+            <View>
                 <ScrollView style={styles.containerScrollView}>
-                    <View>
-                        <View style={styles.form}>
-                            <Form_1 data={this.state.data}/>                
+                    <View style={styles.containerForm}>  
+                        <Form_1_karyawan/>
+                        <Form_2_karyawan/>
+                        <View style={styles.button}>
+                            <ButtonKembaliKaryawan navigation={this.props.navigation}/>
                         </View>
-                        <View style={styles.form}>
-                            <Form_2 data={this.state.data}/>
-                        </View>
-                        <View style={styles.form}>
-                            <Form_3 data={this.state.data}/>                
-                        </View>
-                        <View style={styles.form}>
-                            <Form_4/>                
-                        </View>            
-                        <View style={styles.buttonKembali}>
-                            <ButtonKembali/>
-                        </View>            
                     </View>
                 </ScrollView>
             </View>
+            
         )
-        
     }
 }
 
-export default Form_absensi_detail
+
 
 const styles = StyleSheet.create({
-    form:{
-        borderWidth:0.2,
-        paddingHorizontal:5,
-        borderRadius:3,
-        marginBottom:10
-    },
-    buttonKembali:{
-        alignItems:'flex-end',
-        marginBottom:5
-    },
-    page:{ 
-        flex: 1, 
-        backgroundColor:WARNA_PUTIH,
+    container:{
+        color:WARNA_HITAM
+        // paddingHorizontal:16
     },
     containerScrollView:{
         paddingHorizontal:13
+    },
+    containerInfo:{
+        marginBottom:10,
+    },
+    containerImage:{        
+        marginBottom:15,
+    },
+    textHeader:{
+        fontFamily:"Poppins-SemiBold",
+        fontSize:13,
+        color:WARNA_HITAM,        
+    },
+    textBody:{
+        fontFamily:"Poppins-Light",
+        fontSize:13,
+        color:WARNA_HITAM,        
+    },
+    image:{        
+        width: '100%',
+        height : Dimensions.get('window').height
+    },
+    button:{
+        marginBottom:10,
+        alignItems:'flex-end'
+    },
+    containerForm:{
+        borderWidth:1,
+        borderColor:WARNA_SEKUNDER,
+        borderRadius:3,
+        paddingHorizontal:8
     }
 })

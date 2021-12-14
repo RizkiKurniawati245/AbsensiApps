@@ -3,12 +3,12 @@ import axios, { Axios } from 'axios'
 import { AsyncStorage } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import { Component } from 'react/cjs/react.production.min'
-import { CheckboxPenyakit, InformasiDataDiriKaryawan } from '../..'
+import { CheckboxPenyakit, InformasiDataDiriKry } from '../..'
 import { WARNA_SEKUNDER, LINK_API } from '../../../utils/constants'
 import HeaderFormAbsesni from '../../HeaderFormAbsesni'
 import TemplateInfo from '../TemplateInfo'
 
-class Form_1_karyawan extends Component{
+class Form_1_karyawan extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -22,6 +22,7 @@ class Form_1_karyawan extends Component{
                 axios
                 .get(`${LINK_API}Absensi/GetDetailAbsensiKaryawan?for_id=${for_id}`)
                 .then( res => {
+                    console.log('detail karyawan' + res.data)
                         this.setState({
                         data: [res.data]
                         })
@@ -33,15 +34,45 @@ class Form_1_karyawan extends Component{
 
     componentDidMount(){
       this.GetDetailAbsensiKaryawan();
+
+      let username = '';
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                username = resultParsed.uname
+
+                axios
+                .get(`${LINK_API}Absensi/GetDataInformasiKaryawan?username=${username}`)
+                .then((res) => {
+                    if(res.data[0].result === "SUCCESS") {
+        
+                        this.setState({
+                            kryId:res.data[0].kry_id,
+                            namaDepan:res.data[0].kry_nama_depan,
+                            namaBelakang:res.data[0].kry_nama_belakang,
+                            strDesc:res.data[0].str_desc
+                        })
+                        return;
+                    }
+                    else
+                    {
+                        alert('Gagal menambah data!');
+                        return;
+                    }
+                })
+                .catch(error => alert(error))
+                return username;
+            }
+        });
     }
 
-    render(){
-        // const state = this.state;
+    render() {
         const props = this.props;
         let equalizeData = this.state.data.map((myValue, index) => {
             //============== DATA 1
             // var info1 = myValue.fam_alamat_tinggal.split(",,,");
-            
+            console.log("INI RIWAYAT" + myValue.fab_riwatat_penyakit)
             return(
                 <View key={index}>
 
@@ -57,8 +88,8 @@ class Form_1_karyawan extends Component{
                     <View style={styles.info}>
                         <TemplateInfo
                             question="Dimana posisi Anda saat ini?"
-                            //answer="RT03/01, Kauman, Comal, Kabupaten Pemalang, Jawa Tengah"
-                            answer={myValue.fab_alamat.split("###").join(", ")}
+                            // answer="RT03/01, Kauman, Comal, Kabupaten Pemalang, Jawa Tengah"
+                            answer={myValue.fab_alamat}
                         />
                     </View>
                     
@@ -131,7 +162,7 @@ class Form_1_karyawan extends Component{
                                 Paru={myValue.fab_riwatat_penyakit.includes("Paru") ? true : false}
                                 Ginjal={myValue.fab_riwatat_penyakit.includes("Ginjal") ? true : false}
                                 Lever={myValue.fab_riwatat_penyakit.includes("Lever") ? true : false}
-                                Nope={myValue.fab_riwatat_penyakit.includes("TidakAda") ? true : false}
+                                Nope={myValue.fab_riwatat_penyakit.includes("Tidak Ada") ? true : false}
                             />
                         </View>
                 </View>
@@ -142,7 +173,8 @@ class Form_1_karyawan extends Component{
             <View>
                 <HeaderFormAbsesni text={"1. Data Diri dan Keluarga"}/>
                 <View style={styles.container}>
-                    <InformasiDataDiriKaryawan/>
+                    <InformasiDataDiriKry id={this.state.kryId} namaDpn={this.state.namaDepan}
+                        namaBlkg={this.state.namaBelakang} status={this.state.strDesc} />
                     {equalizeData}
                 </View>            
             </View>
@@ -151,6 +183,7 @@ class Form_1_karyawan extends Component{
 }
 
 export default Form_1_karyawan
+
 const styles = StyleSheet.create({
     container:{
         marginHorizontal:7,
