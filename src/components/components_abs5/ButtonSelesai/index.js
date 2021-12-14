@@ -35,7 +35,7 @@ const ButtonSelesai = (props) => {
                 // let bom_resiko = "Hijau";
 
                 notifikasi.configure();
-                // notifikasi.buatChannel("3");
+
                 notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
                 // notifikasi.kirimNotifikasi("2", "Resiko ditempat anda", bom_resiko);
                 props.navigation.navigate('Form_absensi_sudah')
