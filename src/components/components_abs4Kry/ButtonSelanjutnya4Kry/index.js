@@ -8,8 +8,8 @@ const ButtonSelanjutnya4Kry = (props) => {
     // var pertanyaan = [];
     // var jawaban = [];
     const [pertanyaan, setPertanyaan] = useState('2')
-    const [jawaban, setJawaban] = useState('Kode')
-    const [nim, setNim] = useState('0320190027')
+    const [jawaban, setJawaban] = useState('t')
+    const [npk, setNpk] = useState('suhendra')
     const [idForm, setIdForm] = useState('2')
     const [total, setTotal] = useState('1')
     const [resiko, setResiko] = useState('Hijau')
@@ -19,9 +19,22 @@ const ButtonSelanjutnya4Kry = (props) => {
     }
 
     const handleSubmitPress = () => {
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].for_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].for_id);
+                    return;
+            })
+            .catch(error => alert(error))
+
         for(let i = 0; i < 8; i++){
             axios
-            .post(`${LINK_API}Absensi/CreateDeklarasi?nim=${nim}&idForm=${idForm}
+            .post(`${LINK_API}Absensi/CreateKarDeklarasi?npk=${nim}&idForm=${idForm}
             &pertanyaaan=${i}&jawaban=${jawaban}`)
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
@@ -72,8 +85,8 @@ const ButtonSelanjutnya4Kry = (props) => {
     return (        
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={PindahForm}
-                // onPress={handleSubmitPress}
+                // onPress={PindahForm}
+                onPress={handleSubmitPress}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

@@ -25,8 +25,8 @@ const FormPengisian_2_4 = ({callBack, callBack2}) => {
                         onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Ya" value="1" />
-                        <Picker.Item label="Tidak" value="0" />
+                        <Picker.Item label="Ada" value="1" />
+                        <Picker.Item label="Tidak ada" value="0" />
                     </Picker>
                 </View>
             </View>

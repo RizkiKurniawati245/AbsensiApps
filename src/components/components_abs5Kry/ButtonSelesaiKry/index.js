@@ -5,10 +5,23 @@ import { WARNA_HITAM, WARNA_PUTIH, WARNA_UNGU_MUDA, LINK_API  } from '../../../u
 import { notifikasi } from '../Notifikasi'
 
 const ButtonSelesaiKry = (props) => {
+    const [npk, setNpk] = useState('suhendra')
     const [idForm, setIdForm] = useState('2')
     const [result, setResult] = useState('SUCCESS')
 
     const PindahForm = () => {
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].for_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].for_id);
+                    return;
+            })
+            .catch(error => alert(error))
         axios
         .get(`${LINK_API}Resiko/GetResikoKaryawanById?id=${idForm}`)
         .then((res) => {

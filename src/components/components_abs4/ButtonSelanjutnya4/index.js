@@ -19,6 +19,14 @@ const ButtonSelanjutnya4 = (props) => {
     }
 
     const handleSubmitPress = () => {
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNim(resultParsed.uname)
+                console.log(nim)
+                console.log(resultParsed.uname)
         axios
             .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
             .then((res) => {
@@ -83,7 +91,9 @@ const ButtonSelanjutnya4 = (props) => {
             })
             .catch(error => alert('Gagal'))
             // .finally(() => setLoading(false));
-        };
+            };
+        });
+    }
             
 
     return (        
