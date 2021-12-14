@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_6 = ({callBack, callBack2}) => {
+const FormPengisian_1_6 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [rs, setRs] = useState("");
 
@@ -21,7 +21,10 @@ const FormPengisian_1_6 = ({callBack, callBack2}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, rs);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="y" />
@@ -37,7 +40,10 @@ const FormPengisian_1_6 = ({callBack, callBack2}) => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
-                    onChangeText={rs => setRs(callBack2(rs))}
+                    onChangeText={rs => {
+                        setRs(rs);
+                        callBack(selectedValue, rs);
+                    }}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

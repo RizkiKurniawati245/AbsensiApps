@@ -47,27 +47,27 @@ class Form_3 extends Component {
                         <TemplateInfo
                             question="Apakah saat ini Anda sedang OJT/Magang/Bekerja?"
                             //answer="Tidak"
-                            answer={myValue.fam_is_ojt}
+                            answer={myValue.fam_is_ojt == "" ? "---" : myValue.fam_is_ojt}
                         />
     
                         <TemplateInfo
                             question="Dimanakah posisi Anda saat OJT/Magang/Bekerja?"
                             //answer="---"
                             // answer={data1[0]}
-                            answer={myValue.fam_is_ojt_alamat}
+                            answer={myValue.fam_is_ojt_alamat == "" ? "---" : myValue.fam_is_ojt_alamat}
                         />
                         
                         <TemplateInfo
                             question="Tuliskan nama perusahaan dan cabang/site nya!"
                             //answer="---"
                             // answer={data1[1]}
-                            answer={myValue.fam_is_ojt_alamat}
+                            answer={myValue.fam_is_ojt_alamat == "" ? "---" : myValue.fam_is_ojt_alamat}
                         />
     
                         <TemplateInfo
                             question="Deskripsikan secara singkat tentang Magang/TA Anda! (proposal, monitoring, bimbingan, project/produk TA)"
                             //answer="---"
-                            answer={myValue.fam_is_ojt_desc}
+                            answer={myValue.fam_is_ojt_desc == "" ? "---" : myValue.fam_is_ojt_desc}
                         />
                     </View>                
                 </View>

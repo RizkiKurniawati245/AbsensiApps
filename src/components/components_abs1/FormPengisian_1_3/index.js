@@ -42,6 +42,7 @@ const FormPengisian_1_3 = ({callBack}) => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
+                
                     onChangeText={info => {
                         setInfo(info); 
                         callBack(selectedValue, info);

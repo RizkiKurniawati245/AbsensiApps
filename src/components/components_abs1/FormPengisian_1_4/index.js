@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH, WARNA_SEKUNDER } from '../../../utils/constants'
 import ButtonSalin from '../ButtonSalin'
 
-const FormPengisian_1_4 = ({callBack, callBack2}) => {
+const FormPengisian_1_4 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [kontak, setKontak] = useState("");
 
@@ -17,7 +17,10 @@ const FormPengisian_1_4 = ({callBack, callBack2}) => {
                     <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput 
-                    onChangeText={kontak => setKontak(callBack2(kontak))}
+                    onChangeText={kontak => {
+                        setKontak(kontak);
+                        callBack(selectedValue, kontak);
+                    }}
                     style={styles.textInput}
                 />
             </View>
@@ -33,9 +36,12 @@ const FormPengisian_1_4 = ({callBack, callBack2}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, kontak);
+                        }}
                     >
-                        <Picker.Item label="-- Pilih --" value="" />
+                        <Picker.Item label="-- Pilih --" value="0" />
                         <Picker.Item label="Dokter" value="1" />
                         <Picker.Item label="Perawat/Tenaga Medis non Dokter" value="2" />
                         <Picker.Item label="Pilot/Kru Penerbangan" value="3" />

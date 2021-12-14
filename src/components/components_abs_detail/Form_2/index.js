@@ -46,12 +46,12 @@ class Form_2 extends Component{
                             <TemplateInfo
                                 question="Bagaimana kondisi kesehatan Anda saat ini?"
                                 //answer="Sehat"
-                                answer={myValue.fam_sehat_self}
+                                answer={myValue.fam_sehat_self == "" ? "---" : myValue.fam_sehat_self}
                             />
                             <TemplateInfo
                                 question="Informasikan perihal penyakit atau gejala yang di alami!"
                                 //answer="---"
-                                answer={myValue.fam_sehat_self_desc}
+                                answer={myValue.fam_sehat_self_desc == "" ? "---" : myValue.fam_sehat_self_desc}
                             />
                         </View>
         
@@ -59,12 +59,12 @@ class Form_2 extends Component{
                             <TemplateInfo
                                 question="Bagaimana kondisi kesehatan keluarga Anda/kerabat Anda saat ini? (Jika berada di rumah orang tua/kerabat)"
                                 //answer="Sehat Semua"
-                                answer={myValue.fam_sehat_family}
+                                answer={myValue.fam_sehat_family == "" ? "---" : myValue.fam_sehat_family}
                             />
                             <TemplateInfo
                                 question="Jelaskan data diri keluarga dan gejala yang di alami dan informasikan sejak kapan menderitanya!"
                                 //answer="---"
-                                answer={myValue.fam_sehat_family_desc}
+                                answer={myValue.fam_sehat_family_desc == "" ? "---" : myValue.fam_sehat_family_desc}
                             />
                         </View>
         
@@ -72,12 +72,12 @@ class Form_2 extends Component{
                             <TemplateInfo
                                 question="Apakah di dalam keluarga Anda (termasuk Anda), ada anggota keluarga yang terpapar virus Corona/COVID-19? (ODP/PDP/Suspect/Positif)"
                                 //answer="Tidak Ada"
-                                answer={myValue.fam_covid_self}
+                                answer={myValue.fam_covid_self == "" ? "---" : myValue.fam_covid_self}
                             />
                             <TemplateInfo
                                 question="Mohon jelaskan jika terdapat ODP/PDP/Suspect/Positif!"
                                 //answer="---"
-                                answer={myValue.fam_covid_self_desc}
+                                answer={myValue.fam_covid_self_desc == "" ? "---" : myValue.fam_covid_self_desc}
                             />
                         </View>
         
@@ -85,12 +85,12 @@ class Form_2 extends Component{
                             <TemplateInfo
                                 question="Apakah di lingkungan Anda (termasuk Anda), ada warga yang terpapar virus Corona/COVID-19? (ODP/PDP/Suspect/Positif, terbatas dalam RT/Blok dan ada data resmi dari pengurus RT/penanggung jawab setempat)"
                                 //answer="Tidak Ada"
-                                answer={myValue.fam_covid_around}
+                                answer={myValue.fam_covid_around == "" ? "---" : myValue.fam_covid_around}
                             />
                             <TemplateInfo
                                 question="Mohon jelaskan jika terdapat ODP/PDP/Suspect/Positif!"
                                 //answer="---"
-                                answer={myValue.fam_covid_around_desc}
+                                answer={myValue.fam_covid_around_desc == "" ? "---" : myValue.fam_covid_around_desc}
                             />
                         </View>
         
@@ -102,7 +102,7 @@ class Form_2 extends Component{
                                 Paru={myValue.fam_riwayat_penyakit.includes("Paru") ? true : false}
                                 Ginjal={myValue.fam_riwayat_penyakit.includes("Ginjal") ? true : false}
                                 Lever={myValue.fam_riwayat_penyakit.includes("Lever") ? true : false}
-                                Nope={myValue.fam_riwayat_penyakit.includes("TidakAda") ? true : false}
+                                Nope={myValue.fam_riwayat_penyakit.includes("Tidak Ada") ? true : false}
                             />
                         </View>
                     </View>            

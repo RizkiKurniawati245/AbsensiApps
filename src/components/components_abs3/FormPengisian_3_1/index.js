@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
+const FormPengisian_3_1 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [ojt, setOjt] = useState("");
     const [namaPer, setNamaPer] = useState("");
@@ -24,7 +24,10 @@ const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, ojt, namaPer, ta);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Ya" value="1" />
@@ -40,7 +43,10 @@ const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    onChangeText={ojt => setOjt(callBack2(ojt))}
+                    onChangeText={ojt => {
+                        setOjt(ojt);
+                        callBack(selectedValue, ojt, namaPer, ta);
+                    }}
                     style={styles.textInput}                    
                     />
             </View>
@@ -52,7 +58,10 @@ const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    onChangeText={namaPer => setNamaPer(callBack3(namaPer))}
+                    onChangeText={namaPer => {
+                        setNamaPer(namaPer);
+                        callBack(selectedValue, ojt, namaPer, ta);
+                    }}
                     style={styles.textInput}                    
                     />
             </View>
@@ -64,7 +73,10 @@ const FormPengisian_3_1 = ({callBack, callBack2, callBack3, callBack4}) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    onChangeText={ta => setTa(callBack4(ta))}
+                    onChangeText={ta => {
+                        setTa(ta);
+                        callBack(selectedValue, ojt, namaPer, ta);
+                    }}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

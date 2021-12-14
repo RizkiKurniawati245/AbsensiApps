@@ -9,20 +9,22 @@ import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from 
 // import { Form_absensi_sudah, Form_absensi_1, Form_absensi_2, Form_absensi_3,
 //     Form_absensi_4, Form_absensi_5, Form_absensi_detail } from './Form_routing'
 
-const ButtonSelanjutnya3 = (props) => {
+const ButtonSelanjutnya3 = ({
+        navigation, ojt
+    }) => {
     
     const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('2')
+    const [idForm, setIdForm] = useState('172')
 
-    const [ojt, setOjt] = useState('t')
+    const [ojtt, setOjt] = useState('t')
     const [ojtAlamat, setOjtAlamat] = useState('-')
     const [ojtDesc, setOjtDesc] = useState('-')
 
     const PindahForm = () => {
-        props.navigation.navigate('Form_absensi_4')
+        navigation.navigate('Form_absensi_4')
     }
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = (a, b, c) => {
         AsyncStorage.getItem('user', (error, result) => {
             if(result){
                 //Parse result ke JSON
@@ -46,7 +48,7 @@ const ButtonSelanjutnya3 = (props) => {
 
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi3?nim=${nim}&idForm=${idForm}
-            &ojt=${ojt}&ojtAlamat=${ojtAlamat}&ojtDesc=${ojtDesc}`)
+            &ojt=${ojtt}&ojtAlamat=${ojtAlamat}&ojtDesc=${ojtDesc}`)
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
                     // let step = res.data.step;
@@ -57,7 +59,7 @@ const ButtonSelanjutnya3 = (props) => {
                     //     nim: nim
                     // }
                     // console.log(data);
-                    props.navigation.navigate('Form_absensi_4')
+                    navigation.navigate('Form_absensi_4')
                     // navigation.replace('MainAppKry');
                     // nav.navigate('Form_absensi_4');
 
@@ -78,12 +80,14 @@ const ButtonSelanjutnya3 = (props) => {
             };
         });
     }
-            
+
     return (
         <View  style={styles.button}>
             <TouchableOpacity
                 // onPress={PindahForm}
-                onPress={handleSubmitPress}
+                onPress={() => handleSubmitPress(
+                    ojt.ojt, ojt.posisi, ojt.perusahaan, ojt.magang
+                    )}
                 // onPress={() => props.navigation.navigate("Form Absensi")}
                 // onPress={() => navigation.replace('Absensi4')}
                 // onPress={() => Alert.alert("Selanjutnya")}

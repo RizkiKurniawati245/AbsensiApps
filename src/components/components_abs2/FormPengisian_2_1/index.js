@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_1 = ({callBack, callBack2}) => {
+const FormPengisian_2_1 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [sehat, setSehat] = useState("");
 
@@ -22,7 +22,10 @@ const FormPengisian_2_1 = ({callBack, callBack2}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, sehat);
+                            }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Sehat" value="1" />
@@ -38,7 +41,10 @@ const FormPengisian_2_1 = ({callBack, callBack2}) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    onChangeText={sehat => setSehat(callBack2(sehat))}
+                    onChangeText={sehat => {
+                        setSehat(sehat);
+                        callBack(selectedValue, sehat);
+                    }}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

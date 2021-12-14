@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_6 = ({callBack, callBack2, callBack3, callBack4}) => {
+const FormPengisian_2_6 = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [selectedValue2, setSelectedValue2] = useState("");
     const [selectedValue3, setSelectedValue3] = useState("");
@@ -24,7 +24,10 @@ const FormPengisian_2_6 = ({callBack, callBack2, callBack3, callBack4}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, selectedValue2, selectedValue3, selectedValue4);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Sudah" value="1" />
@@ -44,7 +47,10 @@ const FormPengisian_2_6 = ({callBack, callBack2, callBack3, callBack4}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue2) => setSelectedValue2(callBack2(selectedValue2))}
+                        onValueChange={(selectedValue2) => {
+                            setSelectedValue2(selectedValue2);
+                            callBack(selectedValue, selectedValue2, selectedValue3, selectedValue4);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Satu Kali" value="1" />
@@ -64,7 +70,10 @@ const FormPengisian_2_6 = ({callBack, callBack2, callBack3, callBack4}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue3) => setSelectedValue3(callBack3(selectedValue3))}
+                        onValueChange={(selectedValue3) => {
+                            setSelectedValue3(selectedValue3);
+                            callBack(selectedValue, selectedValue2, selectedValue3, selectedValue4);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="sinopharm" value="1" />
@@ -88,7 +97,10 @@ const FormPengisian_2_6 = ({callBack, callBack2, callBack3, callBack4}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue4) => setSelectedValue4(callBack4(selectedValue4))}
+                        onValueChange={(selectedValue4) => {
+                            setSelectedValue4(selectedValue4);
+                            callBack(selectedValue, selectedValue2, selectedValue3, selectedValue4);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
                         <Picker.Item label="Sudah" value="1" />

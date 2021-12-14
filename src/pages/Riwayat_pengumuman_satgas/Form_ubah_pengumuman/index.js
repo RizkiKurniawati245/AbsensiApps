@@ -70,20 +70,21 @@ const Form_ubah_pengumuman = (props) => {
 
         setErrortext('');
 
-        if (!subyek) {
-            alert('Subyek Pengumuman harus diisi!');
-            return;
-        }
-        if (!isi) {
-            alert('Isi pengumuman harus diisi!');
-            return;
-        }
+        // if (!subyek) {
+        //     alert('Subyek Pengumuman harus diisi!');
+        //     return;
+        // }
+        // if (!isi) {
+        //     alert('Isi pengumuman harus diisi!');
+        //     return;
+        // }
 
         const pen_id =  AsyncStorage.getItem('pen_id');
         axios
             .post(`${LINK_API}Pengumuman/editPengumuman?id=${pen_id}&&subyek=${subyek}&&untuk=${untuk}&&isi=${isi}&&username=${usern}`)
             .then((res) => {
-                console.log(pen_id, subyek, untuk, isi, usern)
+                console.log(res.data.result+ "sebelum true")
+                console.log(subyek, untuk, isi, username)
                 if(res.data.result === "True") {
                     let subyek = res.data.pen_subyek;
                     let untuk = res.data.pen_untuk;
