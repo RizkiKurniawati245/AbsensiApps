@@ -4,7 +4,7 @@ import {StyleSheet, Text, TextInput, View } from 'react-native'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_4Kry = ({callBack, callBack2}) => {
+const FormPengisian_2_4Kry = ({callBack}) => {
     const [selectedValue, setSelectedValue] = useState("");
     const [odp, setOdp] = useState("");
 
@@ -22,11 +22,14 @@ const FormPengisian_2_4Kry = ({callBack, callBack2}) => {
                         mode="dropdown"
                         backgroundColor={WARNA_PUTIH}
                         fontSize="13"
-                        onValueChange={(selectedValue) => setSelectedValue(callBack(selectedValue))}
+                        onValueChange={(selectedValue) => {
+                            setSelectedValue(selectedValue);
+                            callBack(selectedValue, odp);
+                        }}
                     >
                         <Picker.Item label="-- Pilih --" value="" />
-                        <Picker.Item label="Ya" value="1" />
-                        <Picker.Item label="Tidak" value="0" />
+                        <Picker.Item label="Ada" value="1" />
+                        <Picker.Item label="Tidak ada" value="0" />
                     </Picker>
                 </View>
             </View>
@@ -38,7 +41,10 @@ const FormPengisian_2_4Kry = ({callBack, callBack2}) => {
                 <Text style={styles.Mandatory}> *</Text>
                 </Text>
                 <TextInput
-                    onChangeText={odp => setOdp(callBack2(odp))}
+                    onChangeText={odp => {
+                        setOdp(odp);
+                        callBack(selectedValue, odp);
+                    }}
                     multiline={true}
                     numberOfLines={4}
                     style={styles.textInput}                    

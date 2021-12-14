@@ -8,8 +8,8 @@ const ButtonSelanjutnya2 = ({
         navigation, sehat, sehatArr, keluargaOdp, odpArr, vaksin, penyakit
     }) => {
 
-    const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('172')
+    const [nim, setNim] = useState('0320190024')
+    const [idForm, setIdForm] = useState('5')
 
     const [kesehatan, setKesehatan] = useState('1')
     const [kesehatanDesc, setKesehatanDesc] = useState('-')
@@ -52,14 +52,10 @@ const ButtonSelanjutnya2 = ({
                     setIdForm(res.data[0].fma_id)
                     // idForm = res.data.fma_id;
 
-                    console.log("coba 123 " + res.data[0].fma_id);
-                    return;
-            })
-            .catch(error => alert(error))
-
-            // console.log("coa 2 " + idForm);
-        axios
-            .post(`${LINK_API}Absensi/CreateAbsensi2?nim=${nim}&idForm=${idForm}&kesehatan=${kesehatan}
+                    console.log("coba 123 " + idForm);
+                    console.log("coba 1234 " + res.data[0].fma_id);
+                    axios
+            .post(`${LINK_API}Absensi/CreateAbsensi2?nim=${nim}&idForm=${res.data[0].fma_id}&kesehatan=${kesehatan}
             &kesehatanDesc=${kesehatanDesc}&kesehatanFam=${kesehatanFam}&kesehatanFamDesc=${kesehatanFamDesc}
             &covid=${covid}&covidDesc=${covidDesc}&covidArr=${covidArr}&covidArrDesc=${covidArrDesc}
             &riwayat=${riwayat}&sudahVaksin=${sudahVaksin}&jumlahVaksin=${jumlahVaksin}
@@ -83,6 +79,13 @@ const ButtonSelanjutnya2 = ({
                 }    
             })
             .catch(error => alert(error))
+
+                    return;
+            })
+            .catch(error => alert(error))
+
+            // console.log("coa 2 " + idForm);
+        
             // .finally(() => setLoading(false));
             };
     });
