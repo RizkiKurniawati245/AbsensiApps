@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios, { Axios } from 'axios'
+import { AsyncStorage } from 'react-native'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 

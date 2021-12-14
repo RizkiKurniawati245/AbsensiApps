@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios, { Axios } from 'axios'
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, TouchableOpacity, View, AsyncStorage } from 'react-native'
 import { WARNA_HITAM, WARNA_PUTIH, WARNA_UNGU_MUDA, LINK_API  } from '../../../utils/constants'
 import { notifikasi } from '../Notifikasi'
 
@@ -10,6 +10,34 @@ const ButtonSelesaiKry = (props) => {
     const [result, setResult] = useState('SUCCESS')
 
     const PindahForm = () => {
+        let rAbsen = props.riwayat;
+        console.log("Selesai " + rAbsen)
+        let data = {
+            selesai: rAbsen
+        }
+        AsyncStorage.setItem('absensi', JSON.stringify(data));
+
+        
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNpk(resultParsed.uname)
+                console.log(npk)
+                console.log(resultParsed.uname)
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].for_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].for_id);
+                    return;
+            })
+            .catch(error => alert(error))
         axios
             .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
             .then((res) => {
@@ -50,7 +78,9 @@ const ButtonSelesaiKry = (props) => {
             }
         })
         .catch(error => alert(error))
-    }
+    };
+});
+}
     return (        
         <View  style={styles.button}>
             <TouchableOpacity

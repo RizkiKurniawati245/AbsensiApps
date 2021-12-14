@@ -30,7 +30,7 @@ class Form_absensi_1 extends Component {
                 console.log(username)
 
                 axios
-                .get(`${LINK_API}Absensi/GetDataInformasiKaryawan?username=yosep.setiawan`)
+                .get(`${LINK_API}Absensi/GetDataInformasiKaryawan?username=${username}`)
                 .then((res) => {
                     if(res.data[0].result === "SUCCESS") {
         
