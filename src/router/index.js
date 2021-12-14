@@ -11,6 +11,7 @@ import { BottomTabNavigator, HeaderApps, HeaderInformation } from '../components
 import { IconLogoPolman } from '../assets';
 import { WARNA_SEKUNDER, WARNA_UTAMA } from '../utils/constants';
 import Form_absensi_detail from '../pages/Form_absensi/Form_absensi_detail';
+import Form_absensi_sudah from '../pages/Form_absensi/Form_absensi_sudah';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +32,7 @@ const MainApp = ({hasAbsen=false}) => {
             {/* <Tab.Screen name="Form Absensi" component={Form_absensi} /> */}
             {hasAbsen == true ? <Tab.Screen name="List Absensi" component={Riwayat_absensi_mahasiswa} /> : 
             <Tab.Screen name="Form Absensi" component={Form_absensi} />}
-            <Tab.Screen name="List Absensi" component={Form_absensi_detail} />
+            <Tab.Screen name="List Absensi" component={Form_absensi_sudah} />
             <Tab.Screen name="Pengumuman" component={Riwayat_pengumuman} />
             <Tab.Screen name="Ubah Sandi" component={Ubah_sandi} />
             {/* <Tab.Screen name="LogOut" component={Logout} /> */}

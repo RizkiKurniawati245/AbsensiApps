@@ -6,6 +6,7 @@ import Form_absensi_4 from '../Form_absensi_4'
 import Form_absensi_Loc from '../Form_absensi_Loc'
 import Form_absensi_5 from '../Form_absensi_5'
 import Form_absensi_detail from '../Form_absensi_detail'
+import Form_detail_absensi from '../Form_detail_absensi'
 
 export {Form_absensi_sudah, Form_absensi_1, Form_absensi_2, Form_absensi_3,
     Form_absensi_4, Form_absensi_Loc, Form_absensi_5, Form_absensi_detail}
