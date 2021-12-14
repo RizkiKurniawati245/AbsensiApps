@@ -8,7 +8,7 @@ const ButtonSelanjutnya4 = (props) => {
     // var pertanyaan = [];
     // var jawaban = [];
     const [pertanyaan, setPertanyaan] = useState('2')
-    const [jawaban, setJawaban] = useState('Kode')
+    const [jawaban, setJawaban] = useState('0')
     const [nim, setNim] = useState('0320190027')
     const [idForm, setIdForm] = useState('12')
     const [total, setTotal] = useState('1')
@@ -19,6 +19,19 @@ const ButtonSelanjutnya4 = (props) => {
     }
 
     const handleSubmitPress = () => {
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].fma_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].fma_id);
+                    return;
+            })
+            .catch(error => alert(error))
+            
         for(let i = 0; i < 8; i++){
             console.log(idForm);
             axios
