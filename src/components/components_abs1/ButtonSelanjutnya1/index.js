@@ -12,17 +12,17 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
-    const [nim, setNim] = useState('0320190003')
+    const [nim, setNim] = useState('0320190027')
     const [tinggal, setTinggal] = useState('Jakarta')
     const [posisi, setPosisi] = useState('Bandung')
     const [astra, setAstra] = useState('y')
-    const [astraDesc, setAstraDesc] = useState('tes')
+    const [astraDesc, setAstraDesc] = useState('-')
     const [noHP, setNohp] = useState('0821764723')
-    const [profesi, setProfesi] = useState('tes')
-    const [kendaraan, setKendaraan] = useState('tes')
-    const [kendaraanDesc, setKendaraanDesc] = useState('tes')
-    const [rs, setRS] = useState('tes')
-    const [rsDesc, setRSDesc] = useState('tes')
+    const [profesi, setProfesi] = useState('-')
+    const [kendaraan, setKendaraan] = useState('t')
+    const [kendaraanDesc, setKendaraanDesc] = useState('-')
+    const [rs, setRS] = useState('t')
+    const [rsDesc, setRSDesc] = useState('-')
 
     const PindahForm = () => {
         let astra = kos
@@ -51,7 +51,7 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
             &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
             &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
             .then((res) => {
-                
+                console.log(res.data)
                 if(res.data.result === "SUCCESS") {
                     // let step = res.data.step;
                     let fma_id = res.data.fma_id;
@@ -83,8 +83,8 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     return (
         <View  style={styles.button}>
             <TouchableOpacity
-                // onPress={handleSubmitPress}
-                onPress={PindahForm}
+                onPress={handleSubmitPress}
+                // onPress={PindahForm}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

@@ -10,18 +10,31 @@ import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from 
 
 const ButtonSelanjutnya3 = (props) => {
     
-    const [nim, setNim] = useState('0320190003')
+    const [nim, setNim] = useState('0320190027')
     const [idForm, setIdForm] = useState('2')
 
-    const [ojt, setOjt] = useState('tes')
-    const [ojtAlamat, setOjtAlamat] = useState('tes')
-    const [ojtDesc, setOjtDesc] = useState('tes')
+    const [ojt, setOjt] = useState('t')
+    const [ojtAlamat, setOjtAlamat] = useState('-')
+    const [ojtDesc, setOjtDesc] = useState('-')
 
     const PindahForm = () => {
         props.navigation.navigate('Form_absensi_4')
     }
 
     const handleSubmitPress = () => {
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].fma_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].fma_id);
+                    return;
+            })
+            .catch(error => alert(error))
+
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi3?nim=${nim}&idForm=${idForm}
             &ojt=${ojt}&ojtAlamat=${ojtAlamat}&ojtDesc=${ojtDesc}`)

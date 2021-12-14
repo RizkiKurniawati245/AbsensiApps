@@ -5,52 +5,45 @@ import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API  } from
 
 const ButtonSelanjutnya2 = (props) => {
 
-    const [nim, setNim] = useState('0320190003')
+    const [nim, setNim] = useState('0320190027')
     const [idForm, setIdForm] = useState('2')
 
-    const [kesehatan, setKesehatan] = useState('tes')
-    const [kesehatanDesc, setKesehatanDesc] = useState('tes')
-    const [kesehatanFam, setKesehatanFam] = useState('tes')
-    const [kesehatanFamDesc, setKesehatanFamDesc] = useState('tes')
-    const [covid, setCovid] = useState('tes')
-    const [covidDesc, setCovidDesc] = useState('tes')
-    const [covidArr, setCovidArr] = useState('tes')
+    const [kesehatan, setKesehatan] = useState('1')
+    const [kesehatanDesc, setKesehatanDesc] = useState('-')
+    const [kesehatanFam, setKesehatanFam] = useState('1')
+    const [kesehatanFamDesc, setKesehatanFamDesc] = useState('-')
+    const [covid, setCovid] = useState('0')
+    const [covidDesc, setCovidDesc] = useState('-')
+    const [covidArr, setCovidArr] = useState('0')
 
-    const [covidArrDesc, setCovidArrDesc] = useState('tes')
-    const [riwayat, setRiwayat] = useState('-')
-    const [sudahVaksin, setSudahVaksin] = useState('tes')
-    const [jumlahVaksin, setJumlahVaksin] = useState('tes')
-    const [namaVaksin, setNamaVaksin] = useState('tes')
-    const [sertifVaksin, setSertifVaksin] = useState('tes')
+    const [covidArrDesc, setCovidArrDesc] = useState('-')
+    const [riwayat, setRiwayat] = useState('7')
+    const [sudahVaksin, setSudahVaksin] = useState('1')
+    const [jumlahVaksin, setJumlahVaksin] = useState('2')
+    const [namaVaksin, setNamaVaksin] = useState('2')
+    const [sertifVaksin, setSertifVaksin] = useState('1')
     
     const PindahForm = () => {
         props.navigation.navigate('Form_absensi_3')
     }
 
     const handleSubmitPress = () => {
-        // for(let i = 0; i < 8; i++){
-        //     axios
-        //     .post(`${LINK_API}Absensi/CreateKarDeklarasi?npk=${npk}&idForm=${idForm}
-        //     &pertanyaaan=${i}&jawaban=${jawaban}`)
-        //     .then((res) => {
-        //         if(res.data.result === "SUCCESS") {
+        console.log(idForm);
+        console.log(nim);
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
 
-        //             let for_id = res.data.for_id;
+                    setIdForm(res.data[0].fma_id)
+                    // idForm = res.data.fma_id;
 
-        //             // alert('Berhasil tambah data ' + fma_id);
-        //             return;
-        //         }
-        //         else
-        //         {
-        //             //notif gagal diubah
-        //             console.log(error);
-        //             alert('Gagal menambah data!');
-        //             return;
-        //         }    
-        //     })
-        //     .catch(error => alert(error))
-        // }
+                    console.log("coba 3 " + res.data[0].fma_id);
+                    return;
+            })
+            .catch(error => alert(error))
 
+            // console.log("coa 2 " + idForm);
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi2?nim=${nim}&idForm=${idForm}&kesehatan=${kesehatan}
             &kesehatanDesc=${kesehatanDesc}&kesehatanFam=${kesehatanFam}&kesehatanFamDesc=${kesehatanFamDesc}
@@ -58,6 +51,8 @@ const ButtonSelanjutnya2 = (props) => {
             &riwayat=${riwayat}&sudahVaksin=${sudahVaksin}&jumlahVaksin=${jumlahVaksin}
             &namaVaksin=${namaVaksin}&sertifVaksin=${sertifVaksin}`)
             .then((res) => {
+                console.log("coba " + idForm);
+                console.log("coba 55 " + res.data.result);
                 if(res.data.result === "SUCCESS") {
 
                     props.navigation.navigate('Form_absensi_3')

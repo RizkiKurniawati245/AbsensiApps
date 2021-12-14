@@ -34,7 +34,15 @@ const Form_absensi_Loc = ({navigation}) => {
     const [
       address,
       setAddress
-    ] = useState('Cikarang');
+    ] = useState('Jawa Barat');
+    const [
+      address2,
+      setAddress2
+    ] = useState('Bekasi');
+    const [
+      address3,
+      setAddress3
+    ] = useState('Cikarang Selatan');
   const [
     currentLongitude,
     setCurrentLongitude
@@ -80,6 +88,20 @@ const Form_absensi_Loc = ({navigation}) => {
     };
   }, []);
 
+  const GetDataAlamat = (currentLongitude, currentLatitude) => {
+      // fetch(`http://api.positionstack.com/v1/reverse?access_key=cf0f4bbc3eed44be9983e456c7cb24f1& 
+      // query=${currentLatitude},${currentLongitude}`)
+      // .then(response => response.json())
+      // .then(json => {
+      //     console.log(currentLongitude + " " + currentLatitude)
+          
+      //     // alert('Gagal menambah data!');
+      //     // this.setState({
+      //     //     address:json.county
+      //     // })
+      // })
+  }
+
   const getOneTimeLocation = () => {
     setLocationStatus('Getting Location ...');
     Geolocation.getCurrentPosition(
@@ -100,6 +122,8 @@ const Form_absensi_Loc = ({navigation}) => {
         
         //Setting Longitude state
         setCurrentLatitude(currentLatitude);
+
+        // GetDataAlamat(currentLatitude, currentLongitude);
       },
       (error) => {
         setLocationStatus(error.message);
@@ -114,9 +138,36 @@ const Form_absensi_Loc = ({navigation}) => {
   
     const PindahForm = () => {
         // alert(nim + ' ' + idForm + ' ' + currentLongitude + '  ' + currentLatitude);
+      fetch(`http://api.positionstack.com/v1/reverse?access_key=cf0f4bbc3eed44be9983e456c7cb24f1& 
+      query=${currentLatitude},${currentLongitude}`)
+      // query=${currentLatitude},${currentLongitude}`)
+      .then(response => response.json())
+      .then(json => {
+          console.log(json.data)
+          console.log(json.data.county)
+          
+          // alert('Gagal menambah data!');
+          // this.setState({
+          //     address:json.county
+          // })
+      })
+
+      axios
+      .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
+      .then((res) => {
+          // if(res.data.result === "SUCCESS") {
+
+              setIdForm(res.data[0].fma_id)
+              // idForm = res.data.fma_id;
+
+              console.log("coba 3 " + res.data[0].fma_id);
+              return;
+      })
+      .catch(error => alert(error))
+
         axios
         .post(`${LINK_API}Absensi/CreateLoc?nim=${nim}&idForm=${idForm}
-        &latitude=${currentLongitude}&longitude=${currentLatitude}&address=${address}`)
+        &latitude=${currentLongitude}&longitude=${currentLatitude}&address=${address3+","+address2+","+address}`)
         .then((res) => {
             if(res.data.result === "SUCCESS") {
 
@@ -158,6 +209,8 @@ const Form_absensi_Loc = ({navigation}) => {
 
         //Setting Latitude state
         setCurrentLatitude(currentLatitude);
+        
+        // GetDataAlamat(currentLatitude, currentLongitude);
       },
       (error) => {
         setLocationStatus(error.message);
@@ -188,17 +241,28 @@ const Form_absensi_Loc = ({navigation}) => {
               justifyContent: 'center',
               alignItems: 'center',
               marginTop: 16,
+              marginBottom: 16,
+              fontSize:20,
             }}>
-            Longitude: {currentLongitude}
+            {address}, {address2}
           </Text>
           <Text
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: 16,
+              fontSize:20,
+            }}>
+            {address3}
+          </Text>
+          {/* <Text
             style={{
               justifyContent: 'center',
               alignItems: 'center',
               marginTop: 16,
             }}>
             Latitude: {currentLatitude}
-          </Text>
+          </Text> */}
           <View style={{marginTop: 20}}>
           
             {/* <ButtonSelanjutnyaLoc navigation = {navigation}/> */}
