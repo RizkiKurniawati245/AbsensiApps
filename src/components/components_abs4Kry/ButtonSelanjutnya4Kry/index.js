@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios, { Axios } from 'axios'
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, AsyncStorage, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 
 const ButtonSelanjutnya4Kry = (props) => {
@@ -19,6 +19,14 @@ const ButtonSelanjutnya4Kry = (props) => {
     }
 
     const handleSubmitPress = () => {
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNpk(resultParsed.uname)
+                console.log(npk)
+                console.log(resultParsed.uname)
         axios
             .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
             .then((res) => {
@@ -28,15 +36,20 @@ const ButtonSelanjutnya4Kry = (props) => {
                     // idForm = res.data.fma_id;
 
                     console.log("coba 3 " + res.data[0].for_id);
+                    console.log("form123 " + idForm)
                     return;
             })
             .catch(error => alert(error))
 
         for(let i = 0; i < 8; i++){
+            console.log("npk " + npk)
+            console.log("form " + idForm)
             axios
-            .post(`${LINK_API}Absensi/CreateKarDeklarasi?npk=${nim}&idForm=${idForm}
+            .post(`${LINK_API}Absensi/CreateKarDeklarasi?npk=${npk}&idForm=${idForm}
             &pertanyaaan=${i}&jawaban=${jawaban}`)
             .then((res) => {
+                console.log("npk " + npk)
+                console.log("form " + idForm)
                 if(res.data.result === "SUCCESS") {
 
                     let fma_id = res.data.fma_id;
@@ -56,7 +69,7 @@ const ButtonSelanjutnya4Kry = (props) => {
         }
 
         axios
-            .post(`${LINK_API}Absensi/CreateDeklarasiExt?nim=${nim}&idForm=${idForm}
+            .post(`${LINK_API}Absensi/CreateKarDeklarasiExt?npk=${npk}&idForm=${idForm}
             &total=${total}&resiko=${resiko}`)
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
@@ -78,9 +91,11 @@ const ButtonSelanjutnya4Kry = (props) => {
                     return;
                 }    
             })
-            .catch(error => alert('Gagal'))
-            .finally(() => setLoading(false));
+            .catch(error => alert(error))
+            // .finally(() => setLoading(false));
         };
+    });
+}
 
     return (        
         <View  style={styles.button}>

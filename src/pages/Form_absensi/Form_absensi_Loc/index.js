@@ -5,6 +5,7 @@
 import React, {useState, useEffect} from 'react';
 import axios, { Axios } from 'axios'
 import { LINK_API } from '../../../utils/constants'
+import { AsyncStorage } from 'react-native'
 import { ButtonSelanjutnyaLoc } from '../../../components'
 
 // import all the components we are going to use
@@ -26,11 +27,10 @@ const Form_absensi_Loc = ({navigation}) => {
     const [
       nim,
       setNim
-    ] = useState('0320190024');
+    ] = useState('0320190027');
     const [
       idForm,
       setIdForm
-
     ] = useState('2');
 
     const [
@@ -154,6 +154,16 @@ const Form_absensi_Loc = ({navigation}) => {
           // })
       })
 
+      AsyncStorage.getItem('user', (error, result) => {
+          if(result){
+              //Parse result ke JSON
+              let resultParsed = JSON.parse(result)
+              // username = resultParsed.uname
+              setNim(resultParsed.uname)
+              console.log(nim)
+              console.log(resultParsed.uname)
+
+      console.log("coba 12 " + nim);
       axios
       .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
       .then((res) => {
@@ -188,6 +198,8 @@ const Form_absensi_Loc = ({navigation}) => {
         })
         .catch(error => alert(error))
         // navigation.navigate('Form_absensi_5')
+            };
+        });
     }
 
   const subscribeLocationLocation = () => {
