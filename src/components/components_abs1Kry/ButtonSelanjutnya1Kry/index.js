@@ -5,7 +5,9 @@ import axios, { Axios } from 'axios'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 
-const ButtonSelanjutnya1Kry = (props) => {
+const ButtonSelanjutnya1Kry = ({
+    navigation, kendaraan, rSakit, sehat, sehatArr, keluargaOdp, odpArr, vaksin, penyakit
+}) => {
     const [step, setStep] = useState('Step 1')
     const [npk, setNpk] = useState('suhendra')
     const [hamil, setHamil] = useState('tidak')
@@ -22,7 +24,7 @@ const ButtonSelanjutnya1Kry = (props) => {
     const [covidArrDesc, setCovidArrDesc] = useState('tes')
     const [riwayat, setRiwayat] = useState('-')
 
-    const [kendaraan, setKendaraan] = useState('tes')
+    const [kendaran, setKendaraan] = useState('tes')
     const [rs, setRS] = useState('tes')
     const [rsDesc, setRSDesc] = useState('tes')
     const [banjirArr, setBanjirArr] = useState('y')
@@ -36,14 +38,30 @@ const ButtonSelanjutnya1Kry = (props) => {
         props.navigation.navigate('Form_absensi_4')
     }
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = (
+        kendaran, kendaraanDesc, rs, rsDesc
+        ) => {
+
+        if(kendaran==""){
+            kendaran = "-"
+        }
+        if(kendaraanDesc==""){
+            kendaraanDesc = "-"
+        }
+        if(rs==""){
+            rs = "-"
+        }
+        if(rsDesc==""){
+            rsDesc = "-"
+        }
+
         axios
             .post(`${LINK_API}Absensi/CreateKarAbsensi?step=${step}&npk=${npk}&fab_is_hamil=${hamil}
             &tempatTinggal=${tinggal}
             &lokasi=${posisi}&kesehatan=${kesehatan}&kesehatanDesc=${kesehatanDesc}
             &kesehatanFam=${kesehatanFam}&kesehatanFamDesc=${kesehatanFamDesc}&covid=${covid}
             &covidDesc=${covidDesc}&covidArr=${covidArr}&covidArrDesc=${covidArrDesc}&riwayat=${riwayat}
-            &kendaraan=${kendaraan}&RS=${rs}&RSDesc=${rsDesc}&banjirArr=${banjirArr}&banjirRumah=${banjirRumah}
+            &kendaraan=${kendaran}&RS=${rs}&RSDesc=${rsDesc}&banjirArr=${banjirArr}&banjirRumah=${banjirRumah}
             &sudahVaksin=${sudahVaksin}&jumlahVaksin=${jumlahVaksin}&namaVaksin=${namaVaksin}
             &sertifVaksin=${sertifVaksin}`)
             .then((res) => {
@@ -59,7 +77,7 @@ const ButtonSelanjutnya1Kry = (props) => {
                     // console.log(data);
                     // navigation.replace('Absensi4');
                     // navigation.navigate('Absensi4');
-                    props.navigation.navigate('Form_absensi_4')
+                    navigation.navigate('Form_absensi_4')
 
                     //notif kalo berhasil diubah
                     // alert('Berhasil tambah data ' + for_id);
@@ -81,7 +99,14 @@ const ButtonSelanjutnya1Kry = (props) => {
         <View  style={styles.button}>
             <TouchableOpacity
                 // onPress={PindahForm}
-                onPress={handleSubmitPress}
+                onPress={() => handleSubmitPress(
+                    kendaraan.kendaraan, kendaraan.JKendaraan, rSakit.rs, rSakit.rs2,
+                    sehat.sehat, sehat.sehatDesc, sehatArr.sehatArr, sehatArr.sehatArrDesc, 
+                    keluargaOdp.odp, keluargaOdp.odpDesc, odpArr.odpArr, odpArr.odpArrDesc,
+                    vaksin.vaksin, vaksin.suntik, vaksin.NVaksin, vaksin.sertif,
+                    penyakit.Hipertensi, penyakit.Diabetes, penyakit.Jantung, penyakit.Paru,
+                    penyakit.Ginjal, penyakit.Lever, penyakit.Sakit
+                    )}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

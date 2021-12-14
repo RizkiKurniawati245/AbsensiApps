@@ -13,8 +13,8 @@ const ButtonSelanjutnya3 = ({
         navigation, ojt
     }) => {
     
-    const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('172')
+    const [nim, setNim] = useState('0320190024')
+    const [idForm, setIdForm] = useState('5')
 
     const [ojtt, setOjt] = useState('t')
     const [ojtAlamat, setOjtAlamat] = useState('-')
@@ -42,12 +42,8 @@ const ButtonSelanjutnya3 = ({
                     // idForm = res.data.fma_id;
 
                     console.log("coba 3 " + res.data[0].fma_id);
-                    return;
-            })
-            .catch(error => alert(error))
-
-        axios
-            .post(`${LINK_API}Absensi/CreateAbsensi3?nim=${nim}&idForm=${idForm}
+                    axios
+            .post(`${LINK_API}Absensi/CreateAbsensi3?nim=${nim}&idForm=${res.data[0].fma_id}
             &ojt=${ojtt}&ojtAlamat=${ojtAlamat}&ojtDesc=${ojtDesc}`)
             .then((res) => {
                 if(res.data.result === "SUCCESS") {
@@ -76,6 +72,11 @@ const ButtonSelanjutnya3 = ({
                 }   
             })
             .catch(error => alert(error))
+                    return;
+            })
+            // .catch(error => alert(error))
+
+        
             // .finally(() => setLoading(false));
             };
         });
