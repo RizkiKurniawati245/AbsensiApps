@@ -4,14 +4,14 @@ import CheckBox from '@react-native-community/checkbox'
 import { WARNA_BG_FORM, WARNA_HITAM, WARNA_MERAH, WARNA_PUTIH } from '../../../utils/constants';
 
 
-const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBack5, callBack6, callBack7}) => {
+const FormPengisian_2_5Kry = ({callBack}) => {
     const [isSelected, setSelection] = useState(false);
-    const [isSelected1, setSelection1] = useState(false);
     const [isSelected2, setSelection2] = useState(false);
     const [isSelected3, setSelection3] = useState(false);
     const [isSelected4, setSelection4] = useState(false);
     const [isSelected5, setSelection5] = useState(false);
     const [isSelected6, setSelection6] = useState(false);
+    const [isSelected7, setSelection7] = useState(false);
 
     return (
         <View style={styles.container}>            
@@ -26,7 +26,11 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 <View style={styles.checkboxContainer}>
                     <CheckBox
                         value={isSelected}
-                        onValueChange={(isSelected) => setSelection(callBack(isSelected))}            
+                        onValueChange={(isSelected) => {
+                            setSelection(isSelected);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}          
                     />
                     <Text style={styles.label}>Hipertensi</Text>
                 </View>
@@ -34,8 +38,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Diabetes */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected1}
-                        onValueChange={(isSelected1) => setSelection1(callBack2(isSelected1))}
+                        value={isSelected2}
+                        onValueChange={(isSelected2) => {
+                            setSelection2(isSelected2);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Diabetes</Text>
                 </View>
@@ -43,8 +51,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Jantung */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected2}
-                        onValueChange={(isSelected2) => setSelection2(callBack3(isSelected2))}
+                        value={isSelected3}
+                        onValueChange={(isSelected3) => {
+                            setSelection3(isSelected3);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Jantung</Text>
                 </View>
@@ -52,8 +64,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Gangguan Paru-Paru (Misalnya : Asma) */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected3}
-                        onValueChange={(isSelected3) => setSelection3(callBack4(isSelected3))}
+                        value={isSelected4}
+                        onValueChange={(isSelected4) => {
+                            setSelection4(isSelected4);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Gangguan Paru-Paru (Misalnya : Asma)</Text>
                 </View>
@@ -61,8 +77,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Ginjal */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected4}
-                        onValueChange={(isSelected4) => setSelection4(callBack5(isSelected4))}
+                        value={isSelected5}
+                        onValueChange={(isSelected5) => {
+                            setSelection5(isSelected5);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Ginjal</Text>
                 </View>
@@ -70,8 +90,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Lever */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected5}
-                        onValueChange={(isSelected5) => setSelection5(callBack6(isSelected5))}
+                        value={isSelected6}
+                        onValueChange={(isSelected6) => {
+                            setSelection6(isSelected6);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Lever</Text>
                 </View>
@@ -79,8 +103,12 @@ const FormPengisian_2_5Kry = ({callBack, callBack2, callBack3, callBack4, callBa
                 {/* Tidak ada satupun  tertera di atas */}
                 <View style={styles.checkboxContainer}>
                     <CheckBox
-                        value={isSelected6}
-                        onValueChange={(isSelected6) => setSelection6(callBack7(isSelected6))}
+                        value={isSelected7}
+                        onValueChange={(isSelected7) => {
+                            setSelection7(isSelected7);
+                            callBack(isSelected, isSelected2, isSelected3, isSelected4, 
+                                isSelected5, isSelected6, isSelected7);
+                        }}
                     />
                     <Text style={styles.label}>Tidak ada satupun  tertera di atas</Text>
                 </View>
