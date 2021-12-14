@@ -39,6 +39,18 @@ const ButtonSelesaiKry = (props) => {
             })
             .catch(error => alert(error))
         axios
+            .get(`${LINK_API}Resiko/GetDataFormKaryawanById?id=${npk}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].for_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].for_id);
+                    return;
+            })
+            .catch(error => alert(error))
+        axios
         .get(`${LINK_API}Resiko/GetResikoKaryawanById?id=${idForm}`)
         .then((res) => {
             // console.log(res.data)
