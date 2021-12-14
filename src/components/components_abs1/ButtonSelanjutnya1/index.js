@@ -6,27 +6,29 @@ import axios, { Axios } from 'axios'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from '../../../utils/constants'
 
-const ButtonSelanjutnya1 = ({navigation, kos}) => {
+const ButtonSelanjutnya1 = ({
+        navigation, kos, kontak, kendaraan, rSakit
+    }) => {
     // let tinggal = ''
 
     // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
-    const [nim, setNim] = useState('0320190077')
-    const [tinggal, setTinggal] = useState('Jakarta')
+    const [nim, setNim] = useState('0320190027')
+    const [tinggal, setTinggal] = useState('Jl.Papanggo, Jawa Barat, Kabupaten Bekasi')
     const [posisi, setPosisi] = useState('Bandung')
     const [astra, setAstra] = useState('y')
     const [astraDesc, setAstraDesc] = useState('-')
-    const [noHP, setNohp] = useState('0821764723')
+    const [noHP, setNohp] = useState('-')
     const [profesi, setProfesi] = useState('-')
-    const [kendaraan, setKendaraan] = useState('t')
+    const [kendaran, setKendaraan] = useState('t')
     const [kendaraanDesc, setKendaraanDesc] = useState('-')
     const [rs, setRS] = useState('t')
     const [rsDesc, setRSDesc] = useState('-')
 
-    const PindahForm = () => {
-        let astra = kos
-        console.log("BtnSelanjutnya " + JSON.stringify({kos}))
+    const PindahForm = (a, b) => {
+        
+        console.log("BtnSelanjutnya "+a + "coba" + b)
         
         // AsyncStorage.getItem('provinsi', (error, result) => {
         //     if(result){
@@ -41,37 +43,61 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
         // });
 
         // alert('Berhasil tambah data ' + tinggal + ' data');
-        navigation.navigate('Form_absensi_2')
+        // navigation.navigate('Form_absensi_2')
     }
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = (astra, astraDesc, noHP, profesi, 
+        kendaran, kendaraanDesc, rs, rsDesc) => {
         
+            if(astra==""){
+                astra = "-"
+            }
+            if(astraDesc==""){
+                astraDesc = "-"
+            }
+            if(noHP==""){
+                noHP = "-"
+            }
+            if(profesi==""){
+                profesi = "-"
+            }
+            if(kendaran==""){
+                kendaran = "-"
+            }
+            if(kendaraanDesc==""){
+                kendaraanDesc = "-"
+            }
+            if(rs==""){
+                rs = "-"
+            }
+            if(rsDesc==""){
+                rsDesc = "-"
+            }
+        // console.log("BtnSelanjutnya "+a + " " + b)
+        // console.log("BtnSelanjutnya2 "+c + " " + d)
+        // console.log("BtnSelanjutnya3 "+e + " " + f)
+        // console.log("BtnSelanjutnya4 "+g + " " + h)
+
         AsyncStorage.getItem('user', (error, result) => {
             if(result){
                 //Parse result ke JSON
                 let resultParsed = JSON.parse(result)
                 // username = resultParsed.uname
                 setNim(resultParsed.uname)
-                console.log(nim)
                 console.log(resultParsed.uname)
 
+        console.log(nim + " " + tinggal + " " + posisi + " " + astra + " " + astraDesc + " " + noHP + " " +
+        profesi + " " + kendaran + " " + kendaraanDesc + " " + rs + " " + rsDesc)
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
             &posisi=${posisi}&astra=${astra}&astraDesc=${astraDesc}&noHp=${noHP}&profesi=${profesi}
-            &kendaraan=${kendaraan}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
+            &kendaraan=${kendaran}&kendaraanDesc=${kendaraanDesc}&RS=${rs}&RSDesc=${rsDesc}`)
             .then((res) => {
                 console.log(res.data)
                 if(res.data.result === "SUCCESS") {
                     // let step = res.data.step;
                     let fma_id = res.data.fma_id;
                 
-                    // let data = {
-                    //     step: step,
-                    //     nim: nim
-                    // }
-
-                    //notif kalo berhasil diubah
-                    // alert('Berhasil tambah data ' + tinggal);
                     
                     navigation.navigate('Form_absensi_2')
 
@@ -94,8 +120,12 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     return (
         <View  style={styles.button}>
             <TouchableOpacity
-                onPress={handleSubmitPress}
-                // onPress={PindahForm}
+                // onPress={handleSubmitPress}
+                // onPress={() => PindahForm(kos.astra, kos.astraDesc)}
+                onPress={() => handleSubmitPress(
+                    kos.astra, kos.astraDesc, kontak.kontak, kontak.profesi, 
+                    kendaraan.kendaraan, kendaraan.JKendaraan, rSakit.rs, rSakit.rs2
+                    )}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

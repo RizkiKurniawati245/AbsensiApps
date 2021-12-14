@@ -21,7 +21,7 @@ const CellAksiUbahPengumumanSatgas = (props) => {
 
         //const pen_id = AsyncStorage.getItem('pen_id');
         axios
-            .get(`${LINK_API}Pengumuman/getDataPengumuman?pen_id=1`)
+            .get(`${LINK_API}Pengumuman/getDataPengumuman?pen_id=${props.pen_id}`)
             .then((res) => {
             
                //if(res.data.result === "True") {

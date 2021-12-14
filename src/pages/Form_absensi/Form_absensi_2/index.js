@@ -14,25 +14,86 @@ function kosTemen(a, b){
 class Form_absensi_2 extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            sehat:'', sehatDesc:'', sehatArr:'', sehatArrDes:'', odp:'', odpDesc:'', odpArr:'', odpArrDesc:'',
+            vaksin:'', suntik:'', NVaksin:'', sertif:'', Hipertensi:'', Diabetes:'', Jantung:'', Paru:'', 
+            Ginjal:'', Lever:'', Sakit:''
+        }
     }
+
+    penyakit = (a, b, c, d, e, f, g) => {
+        console.log("Vaksin " + a + " " + b + " " + c + " " + d)
+        this.setState({
+            Hipertensi: a,
+            Diabetes: b,
+            Jantung: c,
+            Paru: d,
+            Ginjal: e,
+            Lever: f,
+            Sakit: g
+        })
+    };
+
+    vaksin = (a, b, c, d) => {
+        console.log("Vaksin " + a + " " + b + " " + c + " " + d)
+        this.setState({
+            vaksin: a,
+            suntik: b,
+            NVaksin: c,
+            sertif: d
+        })
+    };
+
+    odpArr = (a, b) => {
+        console.log("OdpArr " + a + " " + b)
+        this.setState({
+            odpArr: a,
+            odpArrDesc: b
+        })
+    };
+    
+    keluargaOdp = (a, b) => {
+        console.log("Kesehatan " + a + " " + b)
+        this.setState({
+            odp: a,
+            odpDesc: b
+        })
+    };
+
+    sehatArr = (a, b) => {
+        console.log("KesehatanArr " + a + " " + b)
+        this.setState({
+            sehatArr: a,
+            sehatArrDes: b
+        })
+    };
+    
+    sehat = (a, b) => {
+        console.log("Kesehatan " + a + " " + b)
+        this.setState({
+            sehat: a,
+            sehatDesc: b
+        })
+    };
+
     render(){
         return (
             <View>
                 <ScrollView style={styles.containerScrollView}>
                     <View style={styles.containerForm}>
                         <HeaderFormAbsesni text={"Langkah 2 / 5 : Mengisi Riwayat Kesehatan"}/>
-                        <FormPengisian_2_1 callBack={kosTemen} callBack2={kosTemen} />
-                        <FormPengisian_2_2 callBack={kosTemen} callBack2={kosTemen} />
-                        <FormPengisian_2_3 callBack={kosTemen} callBack2={kosTemen} />
-                        <FormPengisian_2_4 callBack={kosTemen} callBack2={kosTemen} />
-                        <FormPengisian_2_6 callBack={kosTemen} callBack2={kosTemen} callBack3={kosTemen} callBack4={kosTemen}/>
-                        <FormPengisian_2_5 callBack={kosTemen} callBack2={kosTemen} callBack3={kosTemen} callBack4={kosTemen}
-                             callBack5={kosTemen} callBack6={kosTemen} callBack7={kosTemen}
-                        />
+                        <FormPengisian_2_1 callBack={this.sehat} />
+                        <FormPengisian_2_2 callBack={this.sehatArr} />
+                        <FormPengisian_2_3 callBack={this.keluargaOdp} />
+                        <FormPengisian_2_4 callBack={this.odpArr} />
+                        <FormPengisian_2_6 callBack={this.vaksin} />
+                        <FormPengisian_2_5 callBack={this.penyakit} />
                     </View>
                     <View style={styles.button}>
                         <ButtonBatal2 navigation={this.props.navigation}/>
-                        <ButtonSelanjutnya2 navigation={this.props.navigation}/>
+                        <ButtonSelanjutnya2 navigation={this.props.navigation} sehat={this.state}
+                        sehatArr={this.state} keluargaOdp={this.state} odpArr={this.state}
+                        vaksin={this.state} penyakit={this.state} />
                     </View>
                 </ScrollView>
             </View>

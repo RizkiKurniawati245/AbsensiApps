@@ -57,7 +57,7 @@ class Form_1 extends Component{
                         <TemplateInfo
                             question="Dimana posisi Anda saat ini?"
                             //answer="RT03/01, Kauman, Comal, Kabupaten Pemalang, Jawa Tengah"
-                            answer={myValue.fam_alamat_posisi.split("###").join(", ")}
+                            answer={myValue.fam_alamat_posisi}
                         />
                     </View>
 

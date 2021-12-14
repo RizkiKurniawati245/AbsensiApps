@@ -11,7 +11,7 @@ const ButtonSelanjutnya4 = (props) => {
     const [pertanyaan, setPertanyaan] = useState('2')
     const [jawaban, setJawaban] = useState('0')
     const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('12')
+    const [idForm, setIdForm] = useState('3')
     const [total, setTotal] = useState('1')
     const [resiko, setResiko] = useState('Hijau')
     
@@ -63,10 +63,11 @@ const ButtonSelanjutnya4 = (props) => {
                     return;
                 }    
             })
-            // .catch(error => alert('Coba ' + error))
-            // .catch(error => alert(''))
+            .catch(error => alert('Coba ' + error))
+            .catch(error => alert(''))
         }
 
+        console.log(nim + " " + idForm + " " + total + " " + resiko)
         axios
             .post(`${LINK_API}Absensi/CreateDeklarasiExt?nim=${nim}&idForm=${idForm}
             &total=${total}&resiko=${resiko}`)
@@ -90,7 +91,7 @@ const ButtonSelanjutnya4 = (props) => {
                     return;
                 }    
             })
-            .catch(error => alert('Gagal'))
+            .catch(error => alert(error))
             // .finally(() => setLoading(false));
             };
         });

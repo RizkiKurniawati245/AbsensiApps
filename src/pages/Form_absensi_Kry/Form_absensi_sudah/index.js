@@ -8,9 +8,9 @@ const Form_absensi_sudah = ({navigation}) => {
         <View style={ styles.page }>
             <ScrollView style={styles.containerScrollView}>
                 <View>            
+                            <NotifPengisian/>
                     <ScrollView style={styles.containerScroll}>
                         <View styl={styles.container}>
-                            <NotifPengisian/>
                             <TablePengisian navigation={navigation}/>
                         </View>
                     </ScrollView>
@@ -25,7 +25,7 @@ export default Form_absensi_sudah
 const styles = StyleSheet.create({
     
     containerScroll:{
-        height:300,        
+        height:420,        
     },
     container:{        
     },

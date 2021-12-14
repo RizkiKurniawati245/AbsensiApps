@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import HeaderFormAbsesni from '../../HeaderFormAbsesni'
 import TableKesehatan from '../TableKesehatan'
+import TableKesehatanMahasiswa from '../TableKesehatanMahasiswa'
 
 const Form_4 = () => {
     return (
@@ -13,7 +14,7 @@ const Form_4 = () => {
                 </Text>
             </View>
             <View style={styles.container}>
-                <TableKesehatan/>
+                <TableKesehatanMahasiswa/>
             </View>
         </View>
     )

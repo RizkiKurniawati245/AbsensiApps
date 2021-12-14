@@ -7,80 +7,46 @@ import { LINK_API, WARNA_SEKUNDER } from '../../../utils/constants'
 import axios, { Axios } from 'axios'
 import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react-native/Libraries/Renderer/implementations/ReactNativeRenderer-dev'
 
-function handleAdd(a){
-    // console.log("cobaaa" + a)
-};
-
-// let astra = ''
-// const kosTemen = (a, b) => {
-//     console.log("Saya ganteng " + a + "  " + b)
-//     // astra = a
-//     this.setState({
-//         astra : a
-//     })
-//     // return a
-// };
-
-// let astra = ''
-function profesi(a, b){
-    console.log("Profesi " + a + "  " + b)
-    return a
-};
-
-function kendaraan(a, b){
-    console.log("Kendaraan " + a + "  " + b)
-    return a
-};
-
-function rSakit(a, b){
-    console.log("RSakit " + a + "  " + b)
-    return a
-};
-
-// const coba = (a, b) => {
-//     this.setState({
-//         astra : a,
-//         astraDesc: b
-//     })
-// }
-
 class Form_absensi_1 extends Component {
     constructor(props){
         super(props);
         this.state = {
-            nim:'',
-            nama:'',
-            prodi:'',
-            tingkat:'',
-            status:'',
-            hp:'',
-            kelamin:'',
-            astra:'',
-            astraDesc:''
-        } 
+            nim:'', nama:'', prodi:'', tingkat:'', status:'', hp:'', kelamin:'',
+            astra:'', astraDesc:'', kontak:'', profesi:'', kendaraan:'', JKendaraan:'',
+            rs:'', rs2:'', 
+        }
     }
-    a = ''
 
-    kosTemen(a, b){
+    rSakit = (a, b) => {
+        console.log("RumahSakit " + a + " " + b)
+        this.setState({
+            rs: a,
+            rs2: b
+        })
+    };
+
+    kendaraan = (a, b) => {
+        console.log("Kendaraan " + a + " " + b)
+        this.setState({
+            kendaraan: a,
+            JKendaraan: b
+        })
+    };
+
+    kontak = (a, b) => {
+        console.log("Kontak Temen " + a + " " + b)
+        this.setState({
+            kontak: a,
+            profesi: b
+        })
+    };
+
+    kosTemen = (a, b) => {
         console.log("Kos Temen " + a + " " + b)
-        // this.setState({
-            astra: a
-        // })
-        // coba(a, b)
-            // const coba = (a, b) => {
-            //     this.setState({
-            //         astra : a,
-            //         astraDesc: b
-            //     })
-            // }
-            // setInputState(event) {
-            //     this.setState({
-            //         term: event.target.value 
-            //     })
-            //   }
-
-            // coba(a,b)
-        return a;
+        this.setState({
+            astra: a,
+            astraDesc: b
+        })
     };
 
     componentDidMount() {
@@ -126,22 +92,20 @@ class Form_absensi_1 extends Component {
         <View>
             <ScrollView style={styles.containerScrollView}>
                 <View style={styles.containerForm}>
-                    <HeaderFormAbsesni text={"Langkah 1 / 5 : Mengisi Data Diri dan Keluarga"}/>
+                    <HeaderFormAbsesni text={"Langkah 1 / 5 : Mengisi Data Diri dan Keluarga "}/>
                     <InformasiDataDiri nim={this.state.nim} 
                     nama={this.state.nama} nomor={this.state.hp} status={this.state.status}
                     prodi={this.state.prodi} tingkat={this.state.tingkat} />
                     <FormPengisian_1_1/>
                     <FormPengisian_1_2/>
-                    <FormPengisian_1_3 callBack={this.kosTemen} />
-                    <FormPengisian_1_4 callBack={profesi} callBack2={profesi} />
-                    <FormPengisian_1_5 callBack={kendaraan} callBack2={kendaraan} />
-                    <FormPengisian_1_6 callBack={rSakit} callBack2={rSakit} />
+                    <FormPengisian_1_3 callBack={this.kosTemen}/>
+                    <FormPengisian_1_4 callBack={this.kontak} />
+                    <FormPengisian_1_5 callBack={this.kendaraan} />
+                    <FormPengisian_1_6 callBack={this.rSakit} />
                 </View>
                 <View style={styles.button}>
-                    {/* <ButtonBatal1/> */}
-                    {/* <ButtonSelanjutnya1/> */}
-                    <ButtonSelanjutnya1 navigation={this.props.navigation} kos={this.state.astra}
-                    // prof={profesi} ken={kendaraan} rs={rSakit}
+                    <ButtonSelanjutnya1 navigation={this.props.navigation} kos={this.state}
+                    kontak={this.state} kendaraan={this.state} rSakit={this.state}
                     />
                 </View>
             </ScrollView>

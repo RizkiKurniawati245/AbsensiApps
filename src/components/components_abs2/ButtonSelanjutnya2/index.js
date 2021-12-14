@@ -4,10 +4,12 @@ import { AsyncStorage } from 'react-native'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API  } from '../../../utils/constants'
 
-const ButtonSelanjutnya2 = (props) => {
+const ButtonSelanjutnya2 = ({
+        navigation, sehat, sehatArr, keluargaOdp, odpArr, vaksin, penyakit
+    }) => {
 
     const [nim, setNim] = useState('0320190027')
-    const [idForm, setIdForm] = useState('2')
+    const [idForm, setIdForm] = useState('172')
 
     const [kesehatan, setKesehatan] = useState('1')
     const [kesehatanDesc, setKesehatanDesc] = useState('-')
@@ -28,7 +30,8 @@ const ButtonSelanjutnya2 = (props) => {
         props.navigation.navigate('Form_absensi_3')
     }
 
-    const handleSubmitPress = () => {
+    const handleSubmitPress = (astra, astraDesc, noHP, profesi, 
+        kendaran, kendaraanDesc, rs, rsDesc) => {
         
         AsyncStorage.getItem('user', (error, result) => {
             if(result){
@@ -49,7 +52,7 @@ const ButtonSelanjutnya2 = (props) => {
                     setIdForm(res.data[0].fma_id)
                     // idForm = res.data.fma_id;
 
-                    console.log("coba 3 " + res.data[0].fma_id);
+                    console.log("coba 123 " + res.data[0].fma_id);
                     return;
             })
             .catch(error => alert(error))
@@ -66,7 +69,8 @@ const ButtonSelanjutnya2 = (props) => {
                 console.log("coba 55 " + res.data.result);
                 if(res.data.result === "SUCCESS") {
 
-                    props.navigation.navigate('Form_absensi_3')
+                    navigation.navigate('Form_absensi_3')
+                    // props.navigation.navigate('Form_absensi_3')
                     // alert('Berhasil tambah data ' + for_id + " " + bom_total);
                     return;
                 }
@@ -83,12 +87,18 @@ const ButtonSelanjutnya2 = (props) => {
             };
     });
 }
-            
+
     return (        
         <View  style={styles.button}>
             <TouchableOpacity
                 // onPress={PindahForm}
-                onPress={handleSubmitPress}
+                onPress={() => handleSubmitPress(
+                    sehat.sehat, sehat.sehatDesc, sehatArr.sehatArr, sehatArr.sehatArrDesc, 
+                    keluargaOdp.odp, keluargaOdp.odpDesc, odpArr.odpArr, odpArr.odpArrDesc,
+                    vaksin.vaksin, vaksin.suntik, vaksin.NVaksin, vaksin.sertif,
+                    penyakit.Hipertensi, penyakit.Diabetes, penyakit.Jantung, penyakit.Paru,
+                    penyakit.Ginjal, penyakit.Lever, penyakit.Sakit,
+                    )}
                 // onPress={() => Alert.alert("Selanjutnya")}
             >
                 <Text style={styles.textButton}>SELANJUTNYA</Text>

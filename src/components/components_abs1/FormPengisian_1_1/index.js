@@ -78,22 +78,22 @@ class FormPengisian_1_1 extends Component {
     render(){
         let myProvinsi = this.state.provinsi.map((myValue,myIndex)=>{
             return(
-                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKotakabupaten = this.state.kotakabupaten.map((myValue,myIndex)=>{
             return(
-                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKecamatan = this.state.kecamatan.map((myValue,myIndex)=>{
             return(
-                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });
         let myKelurahan = this.state.kelurahan.map((myValue,myIndex)=>{
             return(
-                <Picker.Item label={myValue.id + ' - ' + myValue.nama} value={myValue.id} key={myIndex}/>
+                <Picker.Item label={myValue.nama} value={myValue.id} key={myIndex}/>
             )
         });        
         return (
@@ -197,7 +197,7 @@ class FormPengisian_1_1 extends Component {
                 {/* Kecamatan */}
                 <View style={styles.containerQuestion}>
                     <Text style={styles.textHeader}>
-                    Kecamaatan 
+                    Kecamatan 
                         <Text style={styles.Mandatory}> *</Text>
                     </Text>
                     <View style={styles.comboBox}>
