@@ -33,6 +33,42 @@ class Form_1 extends Component{
 
     componentDidMount(){
       this.GetDetailAbsensiMahasiswa();
+
+      let username = ''
+        
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                username = resultParsed.uname
+                console.log(username)
+
+                axios
+                .get(`${LINK_API}Absensi/GetDataInformasiMahasiswa?username=${username}`)
+                .then((res) => {
+                    if(res.data[0].result === "SUCCESS") {
+
+                        this.setState({
+                            nim:res.data[0].mhs_id,
+                            nama:res.data[0].mhs_nama,
+                            prodi:res.data[0].mhs_kon_nama,
+                            tingkat:res.data[0].mhs_tingkat,
+                            status:res.data[0].mhs_jalur,
+                            hp:res.data[0].mhs_hp,
+                            kelamin:res.data[0].mhs_jenis_kelamin
+                        })
+                        return;
+                    }
+                    else
+                    {
+                        alert('Gagal menambah data!');
+                        return;
+                    }
+                })
+                .catch(error => alert(error))
+                return username;
+            }
+        });
     }
 
     render(){
@@ -120,7 +156,9 @@ class Form_1 extends Component{
             <View>
                 <HeaderFormAbsesni text={"1. Data Diri dan Keluarga"}/>
                 <View style={styles.container}>
-                    <InformasiDataDiri/>
+                    <InformasiDataDiri nim={this.state.nim} 
+                    nama={this.state.nama} nomor={this.state.hp} status={this.state.status}
+                    prodi={this.state.prodi} tingkat={this.state.tingkat} />
                     {equalizeData}
                 </View>            
             </View>

@@ -10,8 +10,6 @@ const Riwayat_absensi_mahasiswa_list = ({hasAbsen=false, navigation}) => {
         <ScrollView style={styles.containerScroll}>
             {/* BUTTON ISI FORMULIR AKAN AKTTIF JIKA BELUM MENGISI FORMULIR */}
             {/* {hasAbsen == true ? <NotifPengisian data={data}/>  : <ButtonIsiFormulir navigation = {navigation}/>} */}
-      
-            
                 <TablePengisianMahasiswa navigation={navigation}/>
             </ScrollView>
         </View>
