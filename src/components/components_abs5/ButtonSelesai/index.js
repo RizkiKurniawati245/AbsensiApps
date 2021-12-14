@@ -5,18 +5,39 @@ import { notifikasi } from '../Notifikasi'
 import axios, { Axios } from 'axios'
 
 const ButtonSelesai = (props) => {
+    const [nim, setNim] = useState('0320190027')
     const [idForm, setIdForm] = useState('3')
     const [result, setResult] = useState('SUCCESS')
 
     const PindahForm = () => {
         let rAbsen = props.riwayat;
-
         console.log("Selesai " + rAbsen)
-
         let data = {
             selesai: rAbsen
         }
         AsyncStorage.setItem('absensi', JSON.stringify(data));
+
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNim(resultParsed.uname)
+                console.log(nim)
+                console.log(resultParsed.uname)
+
+        axios
+            .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
+            .then((res) => {
+                // if(res.data.result === "SUCCESS") {
+
+                    setIdForm(res.data[0].fma_id)
+                    // idForm = res.data.fma_id;
+
+                    console.log("coba 3 " + res.data[0].fma_id);
+                    return;
+            })
+            .catch(error => alert(error))
 
         axios
         .get(`${LINK_API}Resiko/GetResikoMahasiswaById?id=${idForm}`)
@@ -50,7 +71,10 @@ const ButtonSelesai = (props) => {
             }
         })
         .catch(error => alert(error))
+            };
+        });
     }
+    
     return (        
         <View  style={styles.button}>
             <TouchableOpacity

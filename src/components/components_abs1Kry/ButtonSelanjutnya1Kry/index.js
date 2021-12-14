@@ -7,7 +7,7 @@ import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API } from 
 
 const ButtonSelanjutnya1Kry = (props) => {
     const [step, setStep] = useState('Step 1')
-    const [npk, setNpk] = useState('123523')
+    const [npk, setNpk] = useState('suhendra')
     const [hamil, setHamil] = useState('tidak')
     const [tinggal, setTinggal] = useState('Jakarta')
     const [posisi, setPosisi] = useState('Bandung')

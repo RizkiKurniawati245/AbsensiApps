@@ -12,7 +12,7 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     // console.log("Saya ganteng 2 " + kos)
 
     const [step, setStep] = useState('Step 1')
-    const [nim, setNim] = useState('0320190027')
+    const [nim, setNim] = useState('0320190077')
     const [tinggal, setTinggal] = useState('Jakarta')
     const [posisi, setPosisi] = useState('Bandung')
     const [astra, setAstra] = useState('y')
@@ -45,6 +45,15 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
     }
 
     const handleSubmitPress = () => {
+        
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNim(resultParsed.uname)
+                console.log(nim)
+                console.log(resultParsed.uname)
 
         axios
             .post(`${LINK_API}Absensi/CreateAbsensi?nim=${nim}&tempatTinggal=${tinggal}
@@ -79,6 +88,8 @@ const ButtonSelanjutnya1 = ({navigation, kos}) => {
             .catch(error => alert(error))
             // .finally(() => setLoading(false));
             };
+    });
+}
             
     return (
         <View  style={styles.button}>

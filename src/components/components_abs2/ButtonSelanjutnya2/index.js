@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios, { Axios } from 'axios'
+import { AsyncStorage } from 'react-native'
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { WARNA_BIRU, WARNA_BIRU_MUDA, WARNA_HITAM, WARNA_PUTIH, LINK_API  } from '../../../utils/constants'
 
@@ -28,8 +29,18 @@ const ButtonSelanjutnya2 = (props) => {
     }
 
     const handleSubmitPress = () => {
-        console.log(idForm);
-        console.log(nim);
+        
+        AsyncStorage.getItem('user', (error, result) => {
+            if(result){
+                //Parse result ke JSON
+                let resultParsed = JSON.parse(result)
+                // username = resultParsed.uname
+                setNim(resultParsed.uname)
+                console.log(nim)
+                console.log(resultParsed.uname)
+
+        // console.log(idForm);
+        // console.log(nim);
         axios
             .get(`${LINK_API}Resiko/GetDataFormMahasiswaById?id=${nim}`)
             .then((res) => {
@@ -69,7 +80,9 @@ const ButtonSelanjutnya2 = (props) => {
             })
             .catch(error => alert(error))
             // .finally(() => setLoading(false));
-        };
+            };
+    });
+}
             
     return (        
         <View  style={styles.button}>
